@@ -1,0 +1,746 @@
+/* ========================================
+   CYBERPUNK LOADING COMPONENTS CSS
+   Advanced Loaders & Progress Indicators
+   ======================================== */
+
+@import "./animations.css";
+
+/* ========================================
+   CYBERPUNK SPINNER
+   ======================================== */
+
+.cyberpunk-spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cyberpunk-spinner-container.small .cyberpunk-spinner {
+  width: 30px;
+  height: 30px;
+}
+
+.cyberpunk-spinner-container.medium .cyberpunk-spinner {
+  width: 50px;
+  height: 50px;
+}
+
+.cyberpunk-spinner-container.large .cyberpunk-spinner {
+  width: 80px;
+  height: 80px;
+}
+
+.cyberpunk-spinner {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.spinner-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  animation: cyberpunkSpin 2s linear infinite;
+}
+
+.spinner-ring.ring-1 {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top-color: #22d3ee;
+  border-right-color: #22d3ee;
+  animation-duration: 1.5s;
+}
+
+.spinner-ring.ring-2 {
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  border-bottom-color: #ff006e;
+  border-left-color: #ff006e;
+  animation-duration: 2s;
+  animation-direction: reverse;
+}
+
+.spinner-ring.ring-3 {
+  top: 20%;
+  left: 20%;
+  right: 20%;
+  bottom: 20%;
+  border-top-color: #10b981;
+  border-bottom-color: #10b981;
+  animation-duration: 2.5s;
+}
+
+.spinner-core {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 20%;
+  height: 20%;
+  background: radial-gradient(circle, #22d3ee 0%, #ff006e 100%);
+  border-radius: 50%;
+  animation: cyberpunkPulse 1s ease-in-out infinite;
+}
+
+.cyberpunk-spinner.primary .spinner-ring.ring-1 {
+  border-top-color: #22d3ee;
+  border-right-color: #22d3ee;
+}
+
+.cyberpunk-spinner.secondary .spinner-ring.ring-1 {
+  border-top-color: #ff006e;
+  border-right-color: #ff006e;
+}
+
+.cyberpunk-spinner.success .spinner-ring.ring-1 {
+  border-top-color: #10b981;
+  border-right-color: #10b981;
+}
+
+.cyberpunk-spinner.warning .spinner-ring.ring-1 {
+  border-top-color: #f59e0b;
+  border-right-color: #f59e0b;
+}
+
+.cyberpunk-spinner.error .spinner-ring.ring-1 {
+  border-top-color: #ef4444;
+  border-right-color: #ef4444;
+}
+
+.spinner-text {
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  color: #22d3ee;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: neonFlicker 2s ease-in-out infinite;
+}
+
+/* ========================================
+   MATRIX LOADER
+   ======================================== */
+
+.matrix-loader {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.matrix-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  opacity: 0.3;
+}
+
+.matrix-column {
+  display: flex;
+  flex-direction: column;
+  font-family: "Consolas", monospace;
+  font-size: 12px;
+  color: #22d3ee;
+  animation: matrixRain 3s linear infinite;
+}
+
+.matrix-char {
+  animation: matrixFlicker 0.5s ease-in-out infinite;
+}
+
+@keyframes matrixFlicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.matrix-text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.matrix-loading-text {
+  font-family: "Consolas", monospace;
+  color: #22d3ee;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+  animation: neonFlicker 2s ease-in-out infinite;
+}
+
+.matrix-cursor {
+  font-family: "Consolas", monospace;
+  color: #22d3ee;
+  font-size: 1.2rem;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   CYBERPUNK PROGRESS BAR
+   ======================================== */
+
+.cyberpunk-progress-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.progress-label {
+  font-family: "Consolas", monospace;
+  color: #22d3ee;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.cyberpunk-progress {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(34, 211, 238, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22d3ee, #ff006e);
+  border-radius: 4px;
+  position: relative;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.progress-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: dataStream 2s linear infinite;
+}
+
+.cyberpunk-progress.pulse .progress-fill {
+  animation: cyberpunkPulse 2s ease-in-out infinite;
+}
+
+.cyberpunk-progress.data-stream .progress-glow {
+  animation: dataStream 1s linear infinite;
+}
+
+.progress-indicators {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.progress-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(34, 211, 238, 0.3);
+  transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+  background: #22d3ee;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+  animation: cyberpunkPulse 2s ease-in-out infinite;
+}
+
+.progress-percentage {
+  font-family: "Consolas", monospace;
+  color: #22d3ee;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+/* ========================================
+   NEURAL NETWORK LOADER
+   ======================================== */
+
+.neural-network-loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.neural-nodes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.neural-node {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #22d3ee;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+  animation: neuralPulse 3s ease-in-out infinite;
+  animation-delay: var(--delay);
+  transform-origin: 60px 60px;
+  transform: rotate(var(--angle)) translateX(50px);
+}
+
+@keyframes neuralPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: rotate(var(--angle)) translateX(50px) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateX(50px) scale(1.5);
+  }
+}
+
+.neural-connections {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.neural-connection {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, #22d3ee, transparent);
+  transform-origin: 0 0;
+  transform: translate(-50%, -50%) rotate(var(--rotation));
+  animation: connectionFlow 2s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes connectionFlow {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.neural-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #ff006e, #22d3ee);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Consolas", monospace;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  animation: cyberpunkPulse 2s ease-in-out infinite;
+}
+
+/* ========================================
+   HOLOGRAPHIC LOADER
+   ======================================== */
+
+.holographic-loader {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.holographic-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  opacity: 0.1;
+}
+
+.grid-cell {
+  border: 1px solid #22d3ee;
+  animation: gridFlicker 2s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes gridFlicker {
+  0%,
+  100% {
+    opacity: 0.1;
+    background: transparent;
+  }
+  50% {
+    opacity: 0.8;
+    background: rgba(34, 211, 238, 0.1);
+  }
+}
+
+.holographic-text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  font-family: "Consolas", monospace;
+  color: #22d3ee;
+  font-size: 1.1rem;
+}
+
+.holographic-char {
+  color: #ff006e;
+  margin-right: 0.5rem;
+  animation: charFlicker 1s ease-in-out infinite;
+}
+
+@keyframes charFlicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.holographic-content {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+  animation: holographicGlitch 3s ease-in-out infinite;
+}
+
+.holographic-cursor {
+  margin-left: 0.5rem;
+  animation: blink 1s ease-in-out infinite;
+}
+
+/* ========================================
+   DATA TRANSFER
+   ======================================== */
+
+.data-transfer {
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.transfer-endpoints {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.endpoint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.endpoint-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.5));
+}
+
+.endpoint-label {
+  font-family: "Consolas", monospace;
+  color: #22d3ee;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.transfer-line {
+  position: relative;
+  height: 4px;
+  background: rgba(34, 211, 238, 0.2);
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.data-packet {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  animation: packetTransfer 2s linear infinite;
+}
+
+.data-packet.slow {
+  animation-duration: 4s;
+}
+.data-packet.fast {
+  animation-duration: 1s;
+}
+
+@keyframes packetTransfer {
+  0% {
+    left: -20px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.packet-core {
+  width: 8px;
+  height: 100%;
+  background: #22d3ee;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+}
+
+.packet-trail {
+  position: absolute;
+  top: 0;
+  left: -12px;
+  width: 12px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #22d3ee);
+  border-radius: 2px;
+}
+
+.transfer-status {
+  text-align: center;
+  font-family: "Consolas", monospace;
+  color: #22d3ee;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.status-dots span {
+  animation: dotBlink 1.5s ease-in-out infinite;
+}
+
+.status-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+.status-dots span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.status-dots span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes dotBlink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   SYSTEM BOOT LOADER
+   ======================================== */
+
+.system-boot-loader {
+  width: 400px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 10px;
+  padding: 2rem;
+  font-family: "Consolas", monospace;
+}
+
+.boot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+  padding-bottom: 1rem;
+}
+
+.boot-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-bracket {
+  color: #ff006e;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo-text {
+  color: #22d3ee;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+  animation: neonFlicker 3s ease-in-out infinite;
+}
+
+.boot-version {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.boot-sequence {
+  margin-bottom: 2rem;
+}
+
+.boot-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: bootLineAppear 0.5s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes bootLineAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.boot-prompt {
+  color: #22d3ee;
+  margin-right: 0.5rem;
+}
+
+.boot-text {
+  color: #ffffff;
+  margin-right: 0.5rem;
+}
+
+.boot-cursor {
+  color: #22d3ee;
+  animation: blink 1s ease-in-out infinite;
+}
+
+.boot-progress {
+  height: 4px;
+  background: rgba(34, 211, 238, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.boot-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #22d3ee, #ff006e);
+  border-radius: 2px;
+  width: 0%;
+  animation: bootProgress 4s ease-out forwards;
+}
+
+@keyframes bootProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .matrix-loader,
+  .holographic-loader,
+  .data-transfer,
+  .system-boot-loader {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .neural-network-loader {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cyberpunk-spinner-container.large .cyberpunk-spinner {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .system-boot-loader {
+    padding: 1rem;
+  }
+
+  .boot-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

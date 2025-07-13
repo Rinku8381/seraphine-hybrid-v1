@@ -1,0 +1,710 @@
+/* Admin Panel Interface - Cyberpunk Dashboard Styling */
+@import "./animations.css";
+
+.admin-panel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  overflow: auto;
+  animation: fadeIn var(--animation-speed-normal) var(--easing-smooth) forwards;
+}
+
+.admin-panel-overlay.closing {
+  animation: fadeOut var(--animation-speed-normal) var(--easing-smooth) forwards;
+}
+
+.admin-panel-container {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.98),
+    rgba(20, 20, 20, 0.95)
+  );
+  min-height: 100vh;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  color: #ffffff;
+  position: relative;
+  animation: slideInFromTop var(--animation-speed-slow) var(--easing-cyberpunk)
+    forwards;
+  overflow: hidden;
+}
+
+.admin-panel-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(34, 211, 238, 0.02) 2px,
+    rgba(34, 211, 238, 0.02) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+  animation: dataStream 10s linear infinite;
+}
+
+.admin-panel-container.closing {
+  animation: slideInFromTop var(--animation-speed-slow) var(--easing-cyberpunk)
+    reverse forwards;
+}
+
+/* Header */
+.admin-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+  background: rgba(15, 15, 15, 0.8);
+}
+
+.admin-panel-branding {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.admin-panel-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #22d3ee, #ff006e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+}
+
+.admin-system-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.status-online {
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.status-text {
+  font-size: 12px;
+  color: #10b981;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.admin-panel-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.admin-panel-close:hover {
+  color: #ff006e;
+  background: rgba(255, 0, 110, 0.1);
+}
+
+/* Tabs */
+.admin-panel-tabs {
+  display: flex;
+  background: rgba(15, 15, 15, 0.6);
+  padding: 0 32px;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.admin-tab {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.admin-tab:hover {
+  color: #22d3ee;
+}
+
+.admin-tab.active {
+  color: #22d3ee;
+  border-bottom-color: #22d3ee;
+  background: rgba(34, 211, 238, 0.05);
+}
+
+/* Content */
+.admin-panel-content {
+  padding: 32px;
+  min-height: calc(100vh - 140px);
+}
+
+/* Section Headers */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #22d3ee;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.section-controls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.admin-search-input {
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #ffffff;
+  width: 250px;
+  transition: all 0.2s ease;
+}
+
+.admin-search-input:focus {
+  outline: none;
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
+}
+
+.admin-action-btn {
+  background: linear-gradient(135deg, #22d3ee, #0891b2);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-action-btn.secondary {
+  background: linear-gradient(135deg, #64748b, #475569);
+}
+
+.admin-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 211, 238, 0.3);
+}
+
+/* User Management */
+.user-management-section {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+}
+
+.users-table-container {
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th {
+  background: rgba(34, 211, 238, 0.1);
+  color: #22d3ee;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  padding: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.users-table td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+  font-size: 14px;
+}
+
+.users-table tbody tr:hover {
+  background: rgba(34, 211, 238, 0.05);
+}
+
+.user-id {
+  color: #64748b;
+  font-family: "Consolas", monospace;
+}
+
+.username {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.subscription-badge {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.last-active {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.device-count {
+  color: #22d3ee;
+  font-weight: 600;
+}
+
+.status-badge {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.user-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  background: none;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.action-btn:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: #22d3ee;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-section {
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.sidebar-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #22d3ee;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.override-controls,
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.override-btn,
+.quick-action-btn {
+  background: rgba(20, 20, 20, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.override-btn:hover,
+.quick-action-btn:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: #22d3ee;
+}
+
+.health-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.metric-label {
+  color: #94a3b8;
+}
+
+.metric-value {
+  color: #22d3ee;
+  font-weight: 600;
+}
+
+.security-status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.security-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.security-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.security-indicator.active {
+  background: #10b981;
+}
+
+.security-indicator.warning {
+  background: #f59e0b;
+}
+
+/* Logs Section */
+.logs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logs-container {
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.logs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba(34, 211, 238, 0.1);
+  color: #22d3ee;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.log-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.log-control-btn {
+  background: none;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 6px;
+  color: #22d3ee;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.log-control-btn:hover {
+  background: rgba(34, 211, 238, 0.1);
+}
+
+.logs-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.log-entry {
+  display: grid;
+  grid-template-columns: auto auto auto 1fr;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 12px;
+  font-family: "Consolas", monospace;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.05);
+}
+
+.log-timestamp {
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.log-level {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.log-source {
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.log-message {
+  color: #ffffff;
+}
+
+/* Device Status Section */
+.device-status-section {
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.device-status-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #22d3ee;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.device-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(20, 20, 20, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.device-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.device-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.device-ip {
+  font-size: 11px;
+  color: #64748b;
+  font-family: "Consolas", monospace;
+}
+
+.device-status {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.device-status.online {
+  color: #10b981;
+}
+
+.device-status.warning {
+  color: #f59e0b;
+}
+
+.device-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.device-control-btn {
+  background: rgba(20, 20, 20, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 8px;
+  padding: 10px 16px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.device-control-btn:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: #22d3ee;
+}
+
+.device-control-btn.restart {
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #f59e0b;
+}
+
+.device-control-btn.restart:hover {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: #f59e0b;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .user-management-section {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-panel-header {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .admin-panel-content {
+    padding: 20px;
+  }
+
+  .admin-panel-tabs {
+    padding: 0 20px;
+    overflow-x: auto;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-search-input {
+    width: 100%;
+  }
+
+  .users-table-container {
+    overflow-x: auto;
+  }
+
+  .users-table {
+    min-width: 800px;
+  }
+
+  .log-entry {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 12px 0;
+  }
+
+  .device-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .device-controls {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-panel-header {
+    padding: 12px 16px;
+  }
+
+  .admin-panel-content {
+    padding: 16px;
+  }
+
+  .admin-panel-tabs {
+    padding: 0 16px;
+  }
+
+  .admin-panel-title {
+    font-size: 18px;
+  }
+
+  .admin-tab {
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+
+  .logs-list {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,586 @@
+/* ========================================
+   ENHANCED BUTTON INTERACTIONS
+   Comprehensive Cyberpunk Button System
+   ======================================== */
+
+@import "./animations.css";
+
+/* ========================================
+   BASE BUTTON ENHANCEMENTS
+   ======================================== */
+
+/* Apply to all buttons by default */
+button {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--animation-speed-normal) var(--easing-smooth);
+  transform: translateZ(0);
+  cursor: pointer;
+}
+
+button:not(.no-enhance) {
+  isolation: isolate;
+}
+
+button:not(.no-enhance)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left var(--animation-speed-slow) var(--easing-smooth);
+  z-index: -1;
+}
+
+button:not(.no-enhance):hover::before {
+  left: 100%;
+}
+
+/* ========================================
+   BUTTON CATEGORIES
+   ======================================== */
+
+/* Primary Cyberpunk Buttons */
+.btn-cyberpunk-primary {
+  background: linear-gradient(45deg, #22d3ee, #0891b2);
+  border: 1px solid transparent;
+  color: white;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cyberpunk-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(45deg, #22d3ee, #ff006e, #22d3ee);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: subtract;
+  opacity: 0;
+  transition: opacity var(--animation-speed-normal) var(--easing-smooth);
+}
+
+.btn-cyberpunk-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 25px rgba(34, 211, 238, 0.4),
+    0 0 30px rgba(34, 211, 238, 0.3);
+  filter: brightness(1.1);
+}
+
+.btn-cyberpunk-primary:hover::after {
+  opacity: 1;
+  animation: dataStream 2s linear infinite;
+}
+
+.btn-cyberpunk-primary:active {
+  transform: translateY(0);
+  transition: transform var(--animation-speed-fast) var(--easing-sharp);
+}
+
+/* Secondary Cyberpunk Buttons */
+.btn-cyberpunk-secondary {
+  background: linear-gradient(45deg, #ff006e, #ec4899);
+  border: 1px solid rgba(255, 0, 110, 0.5);
+  color: white;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+
+.btn-cyberpunk-secondary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 8px 25px rgba(255, 0, 110, 0.4),
+    0 0 30px rgba(255, 0, 110, 0.3);
+  border-color: rgba(255, 0, 110, 0.8);
+}
+
+/* Ghost Cyberpunk Buttons */
+.btn-cyberpunk-ghost {
+  background: transparent;
+  border: 2px solid rgba(34, 211, 238, 0.5);
+  color: #22d3ee;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.btn-cyberpunk-ghost::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #22d3ee, #ff006e);
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity var(--animation-speed-normal) var(--easing-smooth);
+  z-index: -1;
+}
+
+.btn-cyberpunk-ghost:hover {
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 211, 238, 0.4);
+}
+
+.btn-cyberpunk-ghost:hover::before {
+  opacity: 1;
+}
+
+/* Danger Cyberpunk Buttons */
+.btn-cyberpunk-danger {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: white;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+
+.btn-cyberpunk-danger:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 25px rgba(239, 68, 68, 0.4),
+    0 0 30px rgba(239, 68, 68, 0.3);
+  animation: holographicGlitch 0.3s ease-in-out;
+}
+
+/* Success Cyberpunk Buttons */
+.btn-cyberpunk-success {
+  background: linear-gradient(45deg, #10b981, #059669);
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  color: white;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+
+.btn-cyberpunk-success:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 25px rgba(16, 185, 129, 0.4),
+    0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   ICON BUTTONS
+   ======================================== */
+
+.btn-icon-cyberpunk {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  color: #22d3ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all var(--animation-speed-normal) var(--easing-smooth);
+}
+
+.btn-icon-cyberpunk:hover {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: #22d3ee;
+  transform: scale(1.1) rotate(5deg);
+  box-shadow:
+    0 8px 25px rgba(34, 211, 238, 0.3),
+    0 0 20px rgba(34, 211, 238, 0.5);
+}
+
+.btn-icon-cyberpunk:active {
+  transform: scale(1.05);
+  transition: transform var(--animation-speed-fast) var(--easing-sharp);
+}
+
+/* Small Icon Buttons */
+.btn-icon-small {
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+}
+
+/* Large Icon Buttons */
+.btn-icon-large {
+  width: 56px;
+  height: 56px;
+  font-size: 1.5rem;
+}
+
+/* ========================================
+   TOGGLE BUTTONS
+   ======================================== */
+
+.btn-toggle-cyberpunk {
+  background: rgba(100, 116, 139, 0.2);
+  border: 2px solid rgba(100, 116, 139, 0.5);
+  color: #64748b;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all var(--animation-speed-normal) var(--easing-smooth);
+}
+
+.btn-toggle-cyberpunk.active {
+  background: linear-gradient(45deg, #22d3ee, #ff006e);
+  border-color: transparent;
+  color: white;
+  animation: cyberpunkPulse 2s ease-in-out infinite;
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.5),
+    0 0 40px rgba(255, 0, 110, 0.3);
+}
+
+.btn-toggle-cyberpunk:hover:not(.active) {
+  border-color: #22d3ee;
+  color: #22d3ee;
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   FLOATING ACTION BUTTONS
+   ======================================== */
+
+.btn-fab-cyberpunk {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #22d3ee, #ff006e);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  box-shadow:
+    0 8px 25px rgba(34, 211, 238, 0.4),
+    0 0 30px rgba(255, 0, 110, 0.3);
+  z-index: 100;
+  animation: fabPulse 3s ease-in-out infinite;
+}
+
+@keyframes fabPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 8px 25px rgba(34, 211, 238, 0.4),
+      0 0 30px rgba(255, 0, 110, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow:
+      0 12px 35px rgba(34, 211, 238, 0.5),
+      0 0 40px rgba(255, 0, 110, 0.4);
+  }
+}
+
+.btn-fab-cyberpunk:hover {
+  transform: scale(1.1) rotate(90deg);
+  animation: none;
+  box-shadow:
+    0 15px 40px rgba(34, 211, 238, 0.6),
+    0 0 50px rgba(255, 0, 110, 0.5);
+}
+
+/* ========================================
+   LOADING BUTTON STATES
+   ======================================== */
+
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.btn-loading.btn-cyberpunk-primary::after {
+  border-top-color: white;
+}
+
+/* ========================================
+   BUTTON GROUPS
+   ======================================== */
+
+.btn-group-cyberpunk {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.btn-group-cyberpunk button {
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid rgba(34, 211, 238, 0.3);
+  background: rgba(34, 211, 238, 0.1);
+  color: #22d3ee;
+  padding: 10px 16px;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 0.9rem;
+  transition: all var(--animation-speed-normal) var(--easing-smooth);
+}
+
+.btn-group-cyberpunk button:last-child {
+  border-right: none;
+}
+
+.btn-group-cyberpunk button:hover {
+  background: rgba(34, 211, 238, 0.2);
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.btn-group-cyberpunk button.active {
+  background: linear-gradient(45deg, #22d3ee, #ff006e);
+  color: white;
+}
+
+/* ========================================
+   SPECIFIC COMPONENT BUTTON ENHANCEMENTS
+   ======================================== */
+
+/* Dashboard Header Icons */
+.header-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.3) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transition: all var(--animation-speed-normal) var(--easing-bounce);
+  transform: translate(-50%, -50%);
+}
+
+.header-icon:hover::after {
+  width: 100px;
+  height: 100px;
+}
+
+/* Room Control Buttons */
+.room-control-btn {
+  transition: all var(--animation-speed-normal) var(--easing-smooth);
+}
+
+.room-control-btn:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.8));
+}
+
+/* Scene Cards as Buttons */
+.scene-card {
+  cursor: pointer;
+  transition: all var(--animation-speed-normal) var(--easing-smooth);
+}
+
+.scene-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.scene-card:active {
+  transform: translateY(-2px) scale(1.01);
+  transition: transform var(--animation-speed-fast) var(--easing-sharp);
+}
+
+/* Modal Close Buttons */
+.modal-close,
+.admin-login-close,
+.admin-panel-close {
+  transition: all var(--animation-speed-normal) var(--easing-smooth);
+}
+
+.modal-close:hover,
+.admin-login-close:hover,
+.admin-panel-close:hover {
+  transform: scale(1.2) rotate(90deg);
+  color: #ff006e;
+  background: rgba(255, 0, 110, 0.1);
+  box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
+}
+
+/* ========================================
+   RIPPLE EFFECTS
+   ======================================== */
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.btn-ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ========================================
+   DISABLED BUTTON STATES
+   ======================================== */
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  animation: none !important;
+}
+
+button:disabled::before,
+button:disabled::after {
+  display: none;
+}
+
+/* ========================================
+   FOCUS STATES FOR ACCESSIBILITY
+   ======================================== */
+
+button:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+  box-shadow:
+    0 0 0 4px rgba(34, 211, 238, 0.2),
+    0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+/* ========================================
+   RESPONSIVE BUTTON ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .btn-fab-cyberpunk {
+    width: 56px;
+    height: 56px;
+    font-size: 1.3rem;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .btn-icon-cyberpunk {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .btn-cyberpunk-primary,
+  .btn-cyberpunk-secondary,
+  .btn-cyberpunk-ghost,
+  .btn-cyberpunk-danger,
+  .btn-cyberpunk-success {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-group-cyberpunk {
+    flex-direction: column;
+  }
+
+  .btn-group-cyberpunk button {
+    border-right: none;
+    border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+  }
+
+  .btn-group-cyberpunk button:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+.btn-gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Reduce animations on low-performance devices */
+@media (prefers-reduced-motion: reduce) {
+  button {
+    animation: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+
+  button:hover {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,665 @@
+.hero-mode-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.hero-mode-container {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 211, 238, 0.1),
+    rgba(16, 185, 129, 0.1)
+  );
+  border: 2px solid transparent;
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+}
+
+.hero-mode-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, #22d3ee, #10b981);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  z-index: -1;
+}
+
+.hero-mode-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-mode-title {
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #22d3ee, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.system-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-dot.normal {
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.status-dot.alert {
+  background: #f59e0b;
+  box-shadow: 0 0 10px #f59e0b;
+}
+
+.status-dot.critical {
+  background: #ef4444;
+  box-shadow: 0 0 10px #ef4444;
+}
+
+.status-text {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.test-hero-btn {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: #fff;
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.test-hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.close-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.hero-mode-content {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  color: #fff;
+}
+
+.section-title {
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: #22d3ee;
+  margin: 0 0 16px 0;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+.main-dashboard {
+  grid-column: span 2;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.seraphine-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.seraphine-avatar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-inner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-core {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #22d3ee, #10b981);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+  z-index: 3;
+}
+
+.avatar-rings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ring {
+  position: absolute;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  animation: rotate 3s linear infinite;
+}
+
+.ring-1 {
+  width: 60px;
+  height: 60px;
+  top: 10px;
+  left: 10px;
+  border-top-color: #22d3ee;
+  border-right-color: #22d3ee;
+  animation-duration: 3s;
+}
+
+.ring-2 {
+  width: 80px;
+  height: 80px;
+  top: 0;
+  left: 0;
+  border-bottom-color: #10b981;
+  border-left-color: #10b981;
+  animation-duration: 4s;
+  animation-direction: reverse;
+}
+
+.ring-3 {
+  width: 100px;
+  height: 100px;
+  top: -10px;
+  left: -10px;
+  border-top-color: #a855f7;
+  border-right-color: #a855f7;
+  animation-duration: 5s;
+}
+
+.seraphine-avatar.glowing .avatar-core {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.8);
+}
+
+.avatar-status {
+  text-align: center;
+}
+
+.avatar-name {
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #22d3ee;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+.avatar-mode {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 4px 0 0 0;
+}
+
+.security-level-section {
+  flex: 1;
+}
+
+.threat-level-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.threat-level-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.threat-level-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.threat-level-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.threat-percentage {
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.threat-label {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.house-map-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.house-map {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
+  height: 200px;
+}
+
+.room {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.room:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.room-label {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+}
+
+.room-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.room-status.normal {
+  background: #22d3ee;
+  box-shadow: 0 0 8px #22d3ee;
+}
+
+.room-status.secured {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.room-status.monitored {
+  background: #a855f7;
+  box-shadow: 0 0 8px #a855f7;
+}
+
+.quick-controls-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.control-btn {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #a855f7;
+}
+
+.control-btn:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+}
+
+.control-icon {
+  font-size: 24px;
+}
+
+.control-label {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.system-status-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.device-status-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.device-status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.device-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.device-name {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.device-location {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.device-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.device-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.device-status-text {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.activity-log-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.activity-log {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.activity-time {
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  min-width: 60px;
+}
+
+.activity-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.activity-action {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: #fff;
+}
+
+.activity-device {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.activity-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-mode-content {
+    grid-template-columns: 1fr;
+  }
+
+  .main-dashboard {
+    grid-column: span 1;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-mode-overlay {
+    padding: 10px;
+  }
+
+  .hero-mode-container {
+    max-height: 95vh;
+  }
+
+  .hero-mode-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .header-right {
+    align-self: stretch;
+    justify-content: space-between;
+  }
+
+  .hero-mode-content {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .controls-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .house-map {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-mode-title {
+    font-size: 20px;
+  }
+
+  .section-title {
+    font-size: 14px;
+  }
+
+  .controls-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .control-btn {
+    padding: 12px;
+  }
+
+  .control-icon {
+    font-size: 20px;
+  }
+
+  .seraphine-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-inner {
+    width: 60px;
+    height: 60px;
+  }
+
+  .avatar-core {
+    width: 30px;
+    height: 30px;
+  }
+}
