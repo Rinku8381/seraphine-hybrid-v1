@@ -1,7 +1,7 @@
 # Seraphine Hybrid V1 - Coding Convention & Structure Guide
 
 ## 🗂️ Folder Structure
-```
+
 src/
 ├── assets/
 │   ├── images/
@@ -13,23 +13,24 @@ src/
 ├── pages/
 ├── styles/
 ├── utils/
-```
 
 ## 📄 File Naming
-- Gunakan `PascalCase.tsx` untuk React Component
-- Gunakan `kebab-case.css` untuk style khusus
-- Gunakan `camelCase.ts` untuk helper functions
+
+- Use `PascalCase.tsx` for React Components
+- Use `kebab-case.css` for custom styles
+- Use `camelCase.ts` for helper functions
 
 ## ✨ Component Rules
-- 1 component per file
-- Tambahkan komentar di atas setiap function utama
-- Hindari hard-coded string → pakai constant jika berulang
+
+- One component per file
+- Add comments above each main function
+- Avoid hard-coded strings → use constants for repeated values
 
 ## 💬 Commit Message Format
-```
-[fitur] / [fix] / [docs] / [chore] - Judul singkat
-```
+
+[feature] / [fix] / [docs] / [chore] - Short title
 
 ## 📱 Responsive
-- Gunakan `flex`, `grid`, `w-full`, dan `max-w-` dari Tailwind
-- Gunakan `@media` queries hanya jika benar-benar perlu
+
+- Use `flex`, `grid`, `w-full`, and `max-w-` from Tailwind
+- Use `@media` queries only when absolutely necessary
