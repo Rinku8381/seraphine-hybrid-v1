@@ -1,25 +1,22 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SplashScreen.css";
 
 interface SplashScreenProps {
-  onComplete: () => void;
+  onComplete?: () => void;
 }
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [dots, setDots] = useState(0);
 
   useEffect(() => {
-    // Animate dots every 500ms
     const dotInterval = setInterval(() => {
       setDots((prev) => (prev + 1) % 4);
     }, 500);
 
-    // Complete after 10 seconds
     const completeTimer = setTimeout(() => {
-      onComplete();
-    }, 10000);
+      onComplete?.();
+    }, 8000); // splash screen tampil 8 detik
 
     return () => {
       clearInterval(dotInterval);
@@ -30,23 +27,26 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <div className="splash-screen">
       <div className="splash-content">
-        <div className="brand-section">
+        <div className="brand-glow">
           <div className="character-avatar">
             <div className="avatar-glow"></div>
-            <div className="avatar-image"></div>
+            <img
+              src="/assets/splash/seraphine-avatar.png"
+              alt="Seraphine Avatar"
+              className="avatar-image"
+            />
           </div>
           <h1 className="brand-title">SERAPHINE HYBRID V1</h1>
-          <p className="brand-tagline">
-            Your house. Your harmony. Your Seraphine.
-          </p>
+          <p className="brand-tagline">Your house. Your harmony. <br /> <span>Your Seraphine.</span></p>
         </div>
 
         <div className="loading-section">
+          <img src="/assets/splash/loading-orb.gif" alt="Loading..." className="loading-orb" />
           <div className="loading-dots">
-            {[0, 1, 2].map((index) => (
+            {[...Array(3)].map((_, i) => (
               <div
-                key={index}
-                className={`dot ${index <= dots - 1 ? "active" : ""}`}
+                key={i}
+                className={`dot ${dots > i ? "active" : ""}`}
               ></div>
             ))}
           </div>

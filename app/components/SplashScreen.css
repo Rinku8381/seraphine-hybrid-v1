@@ -1,129 +1,109 @@
 .splash-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  background-image: url("/assets/splash/splash-bg.png");
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .splash-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  max-width: 400px;
-  padding: 2rem;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.brand-section {
-  margin-bottom: 4rem;
+.brand-glow {
+  animation: pulseGlow 3s infinite;
 }
 
 .character-avatar {
   position: relative;
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 2rem;
+  margin-bottom: 1rem;
 }
 
 .avatar-glow {
   position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  background: radial-gradient(
-    circle,
-    rgba(0, 255, 255, 0.3) 0%,
-    transparent 70%
-  );
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, rgba(0,0,0,0) 80%);
   border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
+  filter: blur(25px);
+  z-index: 0;
 }
 
 .avatar-image {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #00ffff, #ff00ff);
-  border-radius: 50%;
-  border: 2px solid rgba(0, 255, 255, 0.5);
+  width: 220px;
+  z-index: 1;
   position: relative;
 }
 
 .brand-title {
-  font-family: "Orbitron", "Rajdhani", sans-serif;
   font-size: 1.8rem;
-  font-weight: 700;
-  color: #00ffff;
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-  margin: 0 0 1rem 0;
-  letter-spacing: 2px;
+  margin: 0.5rem 0;
+  color: #00e0ff;
+  text-shadow: 0 0 12px #00e0ff;
 }
 
 .brand-tagline {
-  font-family: "Inter", sans-serif;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
-  line-height: 1.4;
+  color: #ffffffb3;
+}
+
+.brand-tagline span {
+  color: #ff00ff;
+  font-weight: bold;
+  text-shadow: 0 0 8px #ff00ff;
 }
 
 .loading-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 2rem;
+}
+
+.loading-orb {
+  width: 40px;
+  height: 40px;
+  animation: rotate 2s linear infinite;
 }
 
 .loading-dots {
   display: flex;
-  gap: 8px;
-  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
+  background: #00e0ff;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
+  margin: 0 4px;
+  opacity: 0.3;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .dot.active {
-  background: #00ffff;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-  transform: scale(1.2);
+  opacity: 1;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
 }
 
-@media (max-width: 768px) {
-  .brand-title {
-    font-size: 1.5rem;
-  }
+@keyframes rotate {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
 
-  .character-avatar {
-    width: 100px;
-    height: 100px;
-  }
-
-  .splash-content {
-    padding: 1rem;
-  }
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0.5 }
 }
