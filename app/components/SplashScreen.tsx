@@ -39,7 +39,16 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <main className="splash-main">
       <div className="splash-container">
-        <ParticleEffects />
+        <ParticleEffects
+          intensity="medium"
+          effects={{
+            particles: true,
+            neural: true,
+            scanlines: false,
+            ambientLights: true,
+            dataStream: false
+          }}
+        />
 
         {/* Logo */}
         <img
@@ -69,7 +78,6 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           alt="Loading..."
           className={`loading-orb ${showContent ? "show" : ""}`}
         />
-
         {/* Section */}
         <div className="splash-container">
           <div className="particle-dot dot1"></div>

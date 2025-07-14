@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./ParticleEffects.css";
 
+interface ParticleEffectsProps {
+  intensity: string;
+  effects: {
+    particles: boolean;
+    neural: boolean;
+    scanlines: boolean;
+    ambientLights: boolean;
+    dataStream: boolean;
+  };
+}
+
 const TOTAL_PARTICLES = 40;
 
-export default function ParticleEffects() {
+export default function ParticleEffects({ intensity, effects }: ParticleEffectsProps) {
   const [particles, setParticles] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
@@ -14,7 +25,7 @@ export default function ParticleEffects() {
       return (
         <div
           key={index}
-          className="particle"
+          className={`particle ${intensity === 'high' ? 'high-intensity' : ''}`}
           style={{
             "--x": x.toString(),
             "--y": y.toString(),

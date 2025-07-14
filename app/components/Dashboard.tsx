@@ -16,7 +16,7 @@ import WhisperModeInterface from "./WhisperModeInterface";
 import ReflectionJournalInterface from "./ReflectionJournalInterface";
 import AdminLoginModal from "./AdminLoginModal";
 import AdminPanelInterface from "./AdminPanelInterface";
-import { CyberpunkAtmosphere } from "./ParticleEffects";
+import CyberpunkAtmosphere from "./ParticleEffects";
 import "./Dashboard.css";
 
 interface Device {
