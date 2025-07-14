@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import SplashScreen from "./app/components/SplashScreen";
 
-interface SplashScreenProps {
-  onComplete: () => void;
-}
-
-const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
-  React.useEffect(() => {
-    // Simulate splash completion after 2 seconds
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [onComplete]);
-
+function TermsScreen() {
   return (
     <div>
-      <h1>Splash Screen</h1>
+      <h1>Terms & Conditions</h1>
+      <p>Here are the rules and privacy policies of Seraphine Hybrid V1.</p>
     </div>
   );
-};
+}
 
-export default SplashScreen;
+export default function App() {
+  const [showTerms, setShowTerms] = useState(false);
+
+  return (
+    <>
+      {!showTerms ? (
+        <SplashScreen onComplete={() => setShowTerms(true)} />
+      ) : (
+        <TermsScreen />
+      )}
+    </>
+  );
+}
