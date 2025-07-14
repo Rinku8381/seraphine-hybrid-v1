@@ -7,51 +7,69 @@ interface SplashScreenProps {
 }
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
-  const [dots, setDots] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [showText, setShowText] = useState(false);
 
   useEffect(() => {
-    const dotInterval = setInterval(() => {
-      setDots((prev) => (prev + 1) % 4);
-    }, 500);
+    // Animation sequence
+    const loadTimer = setTimeout(() => setIsLoaded(true), 500);
+    const contentTimer = setTimeout(() => setShowContent(true), 1500);
+    const textTimer = setTimeout(() => setShowText(true), 2500);
 
     const completeTimer = setTimeout(() => {
       onComplete?.();
-    }, 8000); // splash screen tampil 8 detik
+    }, 4000);
 
     return () => {
-      clearInterval(dotInterval);
+      clearTimeout(loadTimer);
+      clearTimeout(contentTimer);
+      clearTimeout(textTimer);
       clearTimeout(completeTimer);
     };
   }, [onComplete]);
 
   return (
-    <div className="splash-screen">
-      <div className="splash-content">
-        <div className="brand-glow">
-          <div className="character-avatar">
-            <div className="avatar-glow"></div>
-            <img
-              src="/assets/splash/seraphine-avatar.png"
-              alt="Seraphine Avatar"
-              className="avatar-image"
-            />
-          </div>
-          <h1 className="brand-title">SERAPHINE HYBRID V1</h1>
-          <p className="brand-tagline">Your house. Your harmony. <br /> <span>Your Seraphine.</span></p>
-        </div>
+    <main className="splash-main">
+      <div className="splash-container">
+        {/* Logo */}
+        <img
+          src="/assets/splash/Logo.svg"
+          alt="Seraphine Logo"
+          className={`splash-logo ${isLoaded ? "loaded" : ""}`}
+        />
 
-        <div className="loading-section">
-          <img src="/assets/splash/loading-orb.gif" alt="Loading..." className="loading-orb" />
-          <div className="loading-dots">
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={i}
-                className={`dot ${dots > i ? "active" : ""}`}
-              ></div>
-            ))}
-          </div>
+        {/* Avatar */}
+        <img
+          src="/assets/splash/seraphine-avatar.png"
+          alt="Seraphine Avatar"
+          className={`splash-avatar ${showContent ? "show" : ""}`}
+        />
+
+        {/* Text Content */}
+        <h2 className={`main-text ${showText ? "show" : ""}`}>
+          Your house. Your harmony.
+        </h2>
+
+        <h1 className={`brand-text ${showText ? "show" : ""}`}>
+          Your Seraphine.
+        </h1>
+
+        {/* Loading Orb */}
+        <img
+          src="/assets/splash/loading-orb.gif"
+          alt="Loading..."
+          className={`loading-orb ${showContent ? "show" : ""}`}
+        />
+
+        {/* Simplified Content Section */}
+        <div className="content-section">
+          <div className="section-item"></div>
+          <div className="section-item"></div>
+          <div className="section-item"></div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
+import "./SplashScreen.css";
