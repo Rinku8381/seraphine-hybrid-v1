@@ -1,28 +1,46 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./SplashScreen.css";
+import { CSSProperties } from 'react';
 
 interface SplashScreenProps {
   onComplete?: () => void;
+}
+
+interface ParticleStyle extends CSSProperties {
+  '--x'?: string;
+  '--y'?: string;
 }
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [showText, setShowText] = useState(false);
+  const [showOrb, setShowOrb] = useState(false);
 
   useEffect(() => {
-    const loadTimer = setTimeout(() => setIsLoaded(true), 500);
-    const contentTimer = setTimeout(() => setShowContent(true), 1500);
+    // Logo fade in
+    const logoTimer = setTimeout(() => setIsLoaded(true), 500);
+    
+    // Avatar fade in
+    const avatarTimer = setTimeout(() => setShowContent(true), 1500);
+    
+    // Text fade in
     const textTimer = setTimeout(() => setShowText(true), 2500);
+    
+    // Orb fade in
+    const orbTimer = setTimeout(() => setShowOrb(true), 3500);
+    
+    // Complete transition
     const completeTimer = setTimeout(() => {
       onComplete?.();
-    }, 5000);
+    }, 4500);
 
     return () => {
-      clearTimeout(loadTimer);
-      clearTimeout(contentTimer);
+      clearTimeout(logoTimer);
+      clearTimeout(avatarTimer);
       clearTimeout(textTimer);
+      clearTimeout(orbTimer);
       clearTimeout(completeTimer);
     };
   }, [onComplete]);
@@ -30,32 +48,52 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <main className="splash-main">
       <div className="splash-container">
+        {/* Particles */}
+        <div className="particles">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={i}
+              className="particle"
+              style={{
+                '--x': `${Math.random() - 0.5}`,
+                '--y': `${Math.random() - 0.5}`,
+              } as ParticleStyle}
+            />
+          ))}
+        </div>
+
+        {/* Logo */}
         <img
           src="/assets/splash/Logo.svg"
           alt="Seraphine Logo"
-          className={`splash-logo ${isLoaded ? "loaded" : ""}`}
+          className="splash-logo"
+          style={{ opacity: isLoaded ? 1 : 0 }}
         />
+
+        {/* Avatar */}
         <img
-          src="/assets/splash/seraphine-avatar.png"
+          src="/assets/splash/Avatar.svg"
           alt="Seraphine Avatar"
-          className={`splash-avatar ${showContent ? "show" : ""}`}
+          className="splash-avatar"
+          style={{ opacity: showContent ? 1 : 0 }}
         />
-        <h2 className={`main-text ${showText ? "show" : ""}`}>
-          Your house. Your harmony.
-        </h2>
-        <h1 className={`brand-text ${showText ? "show" : ""}`}>
-          Your Seraphine.
+
+        {/* Text */}
+        <h1 className="splash-title" style={{ opacity: showText ? 1 : 0 }}>
+          Welcome to Seraphine Hybrid
         </h1>
-        <img
-          src="/assets/splash/loading-orb.gif"
-          alt="Loading..."
-          className={`loading-orb ${showContent ? "show" : ""}`}
+        <p className="splash-description" style={{ opacity: showText ? 1 : 0 }}>
+          Your AI-powered hybrid experience
+        </p>
+
+        {/* Orb */}
+        <div
+          className="splash-orb"
+          style={{
+            opacity: showOrb ? 1 : 0,
+            animation: showOrb ? 'breathing 2s ease-in-out infinite' : 'none',
+          }}
         />
-        <div className="content-section">
-          <div className="section-item"></div>
-          <div className="section-item"></div>
-          <div className="section-item"></div>
-        </div>
       </div>
     </main>
   );
