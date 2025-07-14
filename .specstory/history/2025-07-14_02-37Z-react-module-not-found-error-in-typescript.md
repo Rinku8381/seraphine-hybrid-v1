@@ -45,3 +45,29 @@ If you still see the error after these steps, let me know your folder structure 
 
 ---
 
+_**User**_
+
+npm stop dev
+
+---
+
+_**Assistant**_
+
+The command you entered, `npm stop dev`, is not a standard npm command. 
+
+- To stop a running development server started with `npm run dev`, you should press `Ctrl + C` in the terminal where the server is running.
+- If you want to stop a script named `dev`, you simply interrupt it as above.
+
+**Note:**  
+`npm stop` runs the script named `stop` in your `package.json`, if it exists.  
+`npm run dev` starts the development server (if defined).
+
+**Summary:**  
+To stop a running dev server:  
+```
+Ctrl + C
+```
+in the terminal window where it is running.
+
+---
+
