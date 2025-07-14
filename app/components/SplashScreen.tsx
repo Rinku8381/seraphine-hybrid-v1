@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./SplashScreen.css";
-import { CSSProperties } from "react";
+import ParticleEffects from "./ParticleEffects";
 
 interface SplashScreenProps {
   onComplete?: () => void;
 }
 
-interface ParticleStyle extends CSSProperties {
+interface ParticleStyle {
   "--x"?: string;
   "--y"?: string;
 }
@@ -39,54 +39,43 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <main className="splash-main">
       <div className="splash-container">
-        {/* Particle Background */}
-        <div className="particles">
-          {Array.from({ length: 40 }).map((_, i) => (
-            <div
-              key={i}
-              className="particle"
-              style={
-                {
-                  "--x": `${Math.random() - 0.5}`,
-                  "--y": `${Math.random() - 0.5}`,
-                } as ParticleStyle
-              }
-            />
-          ))}
-        </div>
+        <ParticleEffects />
 
         {/* Logo */}
         <img
           src="/assets/splash/Logo.svg"
           alt="Seraphine Logo"
-          className="splash-logo"
-          style={{ opacity: isLoaded ? 1 : 0 }}
+          className={`splash-logo ${isLoaded ? "loaded" : ""}`}
         />
 
         {/* Avatar */}
         <img
           src="/assets/splash/seraphine-avatar.png"
           alt="Seraphine Avatar"
-          className="splash-avatar"
-          style={{ opacity: showContent ? 1 : 0 }}
+          className={`splash-avatar ${showContent ? "show" : ""}`}
         />
 
         {/* Text */}
-        <h1 className="splash-title" style={{ opacity: showText ? 1 : 0 }}>
-          Welcome to Seraphine Hybrid
+        <h2 className={`main-text ${showText ? "show" : ""}`}>
+          Your house. Your harmony.
+        </h2>
+        <h1 className={`brand-text ${showText ? "show" : ""}`}>
+          Your Seraphine.
         </h1>
-        <p className="splash-description" style={{ opacity: showText ? 1 : 0 }}>
-          Your AI-powered hybrid experience
-        </p>
 
-        {/* Orb */}
-        <div
-          className="splash-orb"
-          style={{
-            opacity: showOrb ? 1 : 0,
-            animation: showOrb ? "breathing 2s ease-in-out infinite" : "none",
-          }}
+        {/* Loading Orb */}
+        <img
+          src="/assets/splash/loading-orb.gif"
+          alt="Loading..."
+          className={`loading-orb ${showContent ? "show" : ""}`}
         />
+
+        {/* Section */}
+        <div className="content-section">
+          <div className="section-item"></div>
+          <div className="section-item"></div>
+          <div className="section-item"></div>
+        </div>
       </div>
     </main>
   );

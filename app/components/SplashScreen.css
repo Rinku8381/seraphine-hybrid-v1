@@ -68,6 +68,11 @@
   transition: all 1s ease-in-out;
 }
 
+.splash-logo.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* Avatar */
 .splash-avatar {
   width: 300px;
@@ -75,24 +80,44 @@
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(0, 230, 255, 0.4);
   margin-bottom: 24px;
-  transition: all 1.2s ease-in-out;
+  opacity: 0;
   transform: translateY(30px);
+  transition: all 1.2s ease-in-out;
+}
+
+.splash-avatar.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Text */
-.splash-title {
+.main-text {
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   margin: 12px 0 4px;
+  opacity: 0;
+  transform: translateY(20px);
   transition: all 1s ease-in-out;
 }
 
-.splash-description {
+.main-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brand-text {
   color: #ff00aa;
-  font-size: 18px;
+  font-size: 24px;
   text-shadow: 0 0 10px rgba(255, 0, 145, 0.4);
   margin-bottom: 36px;
+  opacity: 0;
+  transform: translateY(20px);
   transition: all 1s ease-in-out;
+}
+
+.brand-text.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Orb Animation */
