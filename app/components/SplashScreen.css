@@ -1,129 +1,135 @@
+/* === Main Layout === */
 .splash-main {
-  font-weight: 400;
-  pointer-events: auto;
   width: 100vw;
   height: 100vh;
+  font-weight: 400;
+  pointer-events: auto;
 }
 
 .splash-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
   width: 100vw;
   height: 100vh;
-  pointer-events: auto;
   background-image: url("/assets/splash/splash-bg.png");
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  overflow: hidden;
+  position: relative;
 }
+
+/* === Fade + Scale Entrance === */
+@keyframes fadeScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* === Glow Neon Pulse === */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px #00e6ff);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px #00e6ff);
+  }
+}
+
+/* === Slide Up === */
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Components === */
 
 /* Logo */
 .splash-logo {
   width: 91px;
-  padding-bottom: 5px;
-  margin: 37px 38px auto auto;
+  margin: 32px auto;
+  animation: fadeScaleIn 1s ease-out forwards;
+  animation-delay: 0.4s;
   opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.splash-logo.loaded {
-  opacity: 1;
-  transform: scale(1);
 }
 
 /* Avatar */
 .splash-avatar {
-  display: flex;
-  align-items: center;
-  border-radius: 25%;
-  filter: drop-shadow(rgba(0, 230, 255, 0.4) 0px 0px 30px);
+  max-width: 60%;
   height: auto;
-  max-width: 70%;
-  justify-content: center;
-  overflow: hidden;
-  margin-bottom: 40px;
+  border-radius: 24%;
+  animation: fadeScaleIn 1.2s ease-out forwards, glowPulse 3s infinite ease-in-out;
+  animation-delay: 1s;
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
 }
 
-.splash-avatar.show {
-  opacity: 1;
-  transform: translateY(0);
+/* Text */
+.main-text,
+.brand-text {
+  font-weight: 500;
+  opacity: 0;
+  animation: slideUpFade 1s ease-out forwards;
 }
 
-/* Text Elements */
 .main-text {
-  color: #fff;
   font-size: 20px;
-  font-weight: 400;
-  line-height: 28px;
-  margin-bottom: 5px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
-  text-align: center;
-}
-
-.main-text.show {
-  opacity: 1;
-  transform: translateY(0);
+  color: white;
+  margin-top: 16px;
+  animation-delay: 2s;
 }
 
 .brand-text {
-  color: #ff0091;
   font-size: 24px;
-  font-weight: 600;
-  text-shadow: 0 0 20px rgba(255, 0, 145, 0.5);
-  margin-bottom: 5px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
-  text-align: center;
-}
-
-.brand-text.show {
-  opacity: 1;
-  transform: translateY(0);
+  color: #ff00cc;
+  text-shadow: 0 0 12px rgba(255, 0, 204, 0.4);
+  animation-delay: 2.4s;
 }
 
 /* Loading Orb */
 .loading-orb {
-  height: 120px;
   width: 120px;
-  margin-top: 30px;
+  height: 120px;
+  margin-top: 24px;
+  animation: fadeScaleIn 1s ease-out forwards;
+  animation-delay: 3s;
   opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.8s ease;
 }
 
-.loading-orb.show {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Content Section */
+/* Dot or Section Item if any */
 .content-section {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 16px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
-.splash-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  text-align: center;
+.content-section .item {
+  width: 24px;
+  height: 24px;
+  background-color: #00e6ff;
+  border-radius: 50%;
+  animation: fadeScaleIn 1s ease-out forwards;
+}
+.content-section .item:nth-child(1) {
+  animation-delay: 3.5s;
+}
+.content-section .item:nth-child(2) {
+  animation-delay: 4s;
+}
+.content-section .item:nth-child(3) {
+  animation-delay: 4.5s;
 }

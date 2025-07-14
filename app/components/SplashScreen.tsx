@@ -12,14 +12,12 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [showText, setShowText] = useState(false);
 
   useEffect(() => {
-    // Animation sequence
     const loadTimer = setTimeout(() => setIsLoaded(true), 500);
     const contentTimer = setTimeout(() => setShowContent(true), 1500);
     const textTimer = setTimeout(() => setShowText(true), 2500);
-
     const completeTimer = setTimeout(() => {
       onComplete?.();
-    }, 4000);
+    }, 5000);
 
     return () => {
       clearTimeout(loadTimer);
@@ -32,37 +30,27 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <main className="splash-main">
       <div className="splash-container">
-        {/* Logo */}
         <img
           src="/assets/splash/Logo.svg"
           alt="Seraphine Logo"
           className={`splash-logo ${isLoaded ? "loaded" : ""}`}
         />
-
-        {/* Avatar */}
         <img
           src="/assets/splash/seraphine-avatar.png"
           alt="Seraphine Avatar"
           className={`splash-avatar ${showContent ? "show" : ""}`}
         />
-
-        {/* Text Content */}
         <h2 className={`main-text ${showText ? "show" : ""}`}>
           Your house. Your harmony.
         </h2>
-
         <h1 className={`brand-text ${showText ? "show" : ""}`}>
           Your Seraphine.
         </h1>
-
-        {/* Loading Orb */}
         <img
           src="/assets/splash/loading-orb.gif"
           alt="Loading..."
           className={`loading-orb ${showContent ? "show" : ""}`}
         />
-
-        {/* Simplified Content Section */}
         <div className="content-section">
           <div className="section-item"></div>
           <div className="section-item"></div>
@@ -72,4 +60,3 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     </main>
   );
 }
-import "./SplashScreen.css";
