@@ -25,7 +25,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     const orbTimer = setTimeout(() => setShowOrb(true), 5000);
     const completeTimer = setTimeout(() => {
       onComplete?.();
-    }, 12000); // ⏳ Redirect after 12s
+    }, 12000); // ⏳ Redirect after 15s
 
     return () => {
       clearTimeout(logoTimer);
@@ -71,10 +71,11 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         />
 
         {/* Section */}
-        <div className="content-section">
-          <div className="section-item"></div>
-          <div className="section-item"></div>
-          <div className="section-item"></div>
+        <div className="splash-container">
+          <div className="particle-dot dot1"></div>
+          <div className="particle-dot dot2"></div>
+          <div className="particle-dot dot3"></div>
+          <div className="particle-dot dot4"></div>
         </div>
       </div>
     </main>

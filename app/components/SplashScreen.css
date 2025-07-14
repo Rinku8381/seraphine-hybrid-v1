@@ -1,166 +1,84 @@
-/* Global Splash Container */
-.splash-main {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #0a0a0a;
-  font-family: 'Segoe UI', sans-serif;
-  position: relative;
+/* Avatar: remove box shadow */
+.splash-avatar {
+  box-shadow: none !important;
+  max-width: 380px;
+  width: 30vw;
+  height: auto;
+  margin: 0 auto 40px auto;
+  display: block;
+  transition: all 0.8s ease;
 }
 
 .splash-container {
-  width: 100%;
-  height: 100%;
-  background-image: url("/assets/splash/splash-bg.png");
-  background-size: cover;
-  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh; /* Full screen height */
+  width: 100vw;  /* Full screen width */
   position: relative;
-  z-index: 1;
-}
-
-/* Particle FX */
-.particles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
+  background-image: url("/assets/splash/splash-bg.png");
+  background-size: cover;
+  background-position: center;
   overflow: hidden;
-  pointer-events: none;
 }
 
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: #00e6ff;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  opacity: 0.3;
-  animation: float 10s linear infinite;
-  transform: translate(calc(var(--x, 0) * 100vw), calc(var(--y, 0) * 100vh));
-}
-
-@keyframes float {
-  0% {
-    transform: scale(0.6) translate(calc(var(--x, 0) * 100vw), calc(var(--y, 0) * 100vh));
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1) translate(calc(var(--x, 0) * 100vw), calc(var(--y, 0) * 100vh));
-    opacity: 0.3;
-  }
-}
-
-/* Logo */
+/* Logo right top corner */
 .splash-logo {
-  width: 80px;
-  margin-bottom: 24px;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 1s ease-in-out;
-}
-
-.splash-logo.loaded {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 70px;
+  height: auto;
   opacity: 1;
-  transform: scale(1);
+  transform: none;
+  transition: none;
 }
 
-/* Avatar */
-.splash-avatar {
-  width: 300px;
-  max-width: 60vw;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(0, 230, 255, 0.4);
-  margin-bottom: 24px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1.2s ease-in-out;
-}
-
-.splash-avatar.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Text */
-.main-text {
-  color: white;
-  font-size: 20px;
-  margin: 12px 0 4px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1s ease-in-out;
-}
-
-.main-text.show {
-  opacity: 1;
-  transform: translateY(0);
+/* Neon glowing text */
+.main-text,
+.brand-text {
+  text-shadow: 0 0 5px #fff, 0 0 10px #00f0ff, 0 0 15px #00f0ff, 0 0 20px #00f0ff;
 }
 
 .brand-text {
-  color: #ff00aa;
-  font-size: 24px;
-  text-shadow: 0 0 10px rgba(255, 0, 145, 0.4);
-  margin-bottom: 36px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1s ease-in-out;
+  text-shadow: 0 0 5px #ff0091, 0 0 10px #ff0091, 0 0 15px #ff0091, 0 0 20px #ff0091;
 }
 
-.brand-text.show {
-  opacity: 1;
-  transform: translateY(0);
+/* Dots animation on background */
+@keyframes flicker {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
 }
 
-/* Orb Animation */
-.splash-orb {
-  width: 80px;
-  height: 80px;
+.particle-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #00f0ff;
   border-radius: 50%;
-  background: radial-gradient(circle at center, #00f0ff, #0ff0ff22);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
-  opacity: 0;
+  animation: flicker 2s infinite ease-in-out;
 }
 
-@keyframes breathing {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-  }
-  50% {
-    transform: scale(1.2);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-  }
-}
-
-/* Responsive */
 @media (max-width: 768px) {
   .splash-avatar {
-    width: 220px;
+    max-width: 300px;
   }
 
-  .splash-title {
-    font-size: 20px;
+  .splash-logo {
+    width: 50px;
+    top: 20px;
+    right: 20px;
   }
 
-  .splash-description {
+  .main-text, .brand-text {
     font-size: 16px;
-  }
-
-  .splash-orb {
-    width: 60px;
-    height: 60px;
+    text-align: center;
   }
 }
+
+/* Add some dots manually */
+.dot1 { top: 20%; left: 10%; animation-delay: 0s; }
+.dot2 { top: 40%; left: 80%; animation-delay: 1s; }
+.dot3 { top: 60%; left: 30%; animation-delay: 2s; }
+.dot4 { top: 80%; left: 60%; animation-delay: 3s; }
