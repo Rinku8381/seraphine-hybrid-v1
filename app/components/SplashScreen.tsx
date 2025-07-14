@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./SplashScreen.css";
-import { CSSProperties } from 'react';
+import { CSSProperties } from "react";
 
 interface SplashScreenProps {
   onComplete?: () => void;
 }
 
 interface ParticleStyle extends CSSProperties {
-  '--x'?: string;
-  '--y'?: string;
+  "--x"?: string;
+  "--y"?: string;
 }
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
@@ -19,22 +19,13 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [showOrb, setShowOrb] = useState(false);
 
   useEffect(() => {
-    // Logo fade in
-    const logoTimer = setTimeout(() => setIsLoaded(true), 500);
-    
-    // Avatar fade in
-    const avatarTimer = setTimeout(() => setShowContent(true), 1500);
-    
-    // Text fade in
-    const textTimer = setTimeout(() => setShowText(true), 2500);
-    
-    // Orb fade in
-    const orbTimer = setTimeout(() => setShowOrb(true), 3500);
-    
-    // Complete transition
+    const logoTimer = setTimeout(() => setIsLoaded(true), 800);
+    const avatarTimer = setTimeout(() => setShowContent(true), 2000);
+    const textTimer = setTimeout(() => setShowText(true), 3500);
+    const orbTimer = setTimeout(() => setShowOrb(true), 5000);
     const completeTimer = setTimeout(() => {
       onComplete?.();
-    }, 4500);
+    }, 12000); // ⏳ Redirect after 12s
 
     return () => {
       clearTimeout(logoTimer);
@@ -48,16 +39,18 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   return (
     <main className="splash-main">
       <div className="splash-container">
-        {/* Particles */}
+        {/* Particle Background */}
         <div className="particles">
-          {Array.from({ length: 50 }).map((_, i) => (
+          {Array.from({ length: 40 }).map((_, i) => (
             <div
               key={i}
               className="particle"
-              style={{
-                '--x': `${Math.random() - 0.5}`,
-                '--y': `${Math.random() - 0.5}`,
-              } as ParticleStyle}
+              style={
+                {
+                  "--x": `${Math.random() - 0.5}`,
+                  "--y": `${Math.random() - 0.5}`,
+                } as ParticleStyle
+              }
             />
           ))}
         </div>
@@ -72,7 +65,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
 
         {/* Avatar */}
         <img
-          src="/assets/splash/Avatar.svg"
+          src="/assets/splash/seraphine-avatar.png"
           alt="Seraphine Avatar"
           className="splash-avatar"
           style={{ opacity: showContent ? 1 : 0 }}
@@ -91,7 +84,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           className="splash-orb"
           style={{
             opacity: showOrb ? 1 : 0,
-            animation: showOrb ? 'breathing 2s ease-in-out infinite' : 'none',
+            animation: showOrb ? "breathing 2s ease-in-out infinite" : "none",
           }}
         />
       </div>

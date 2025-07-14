@@ -1,191 +1,141 @@
-/* === Main Layout === */
+/* Global Splash Container */
 .splash-main {
   width: 100vw;
   height: 100vh;
-  font-weight: 400;
-  pointer-events: auto;
+  overflow: hidden;
+  background-color: #0a0a0a;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
 }
 
 .splash-container {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/splash/splash-bg.png");
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-image: url("/assets/splash/splash-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
   position: relative;
+  z-index: 1;
 }
 
-/* === Fade + Scale Entrance === */
-@keyframes fadeScaleIn {
+/* Particle FX */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #00e6ff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  opacity: 0.3;
+  animation: float 10s linear infinite;
+  transform: translate(calc(var(--x, 0) * 100vw), calc(var(--y, 0) * 100vh));
+}
+
+@keyframes float {
   0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* === Glow Neon Pulse === */
-@keyframes glowPulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 5px #00e6ff);
+    transform: scale(0.6) translate(calc(var(--x, 0) * 100vw), calc(var(--y, 0) * 100vh));
+    opacity: 0.3;
   }
   50% {
-    filter: drop-shadow(0 0 25px #00e6ff);
-  }
-}
-
-/* === Slide Up === */
-@keyframes slideUpFade {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
+    opacity: 0.7;
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translate(calc(var(--x, 0) * 100vw), calc(var(--y, 0) * 100vh));
+    opacity: 0.3;
   }
 }
-
-/* === Components === */
 
 /* Logo */
 .splash-logo {
-  width: 91px;
-  margin: 32px auto;
-  animation: fadeScaleIn 1.2s ease-out forwards;
-  animation-delay: 0.6s;
+  width: 80px;
+  margin-bottom: 24px;
   opacity: 0;
   transform: scale(0.8);
+  transition: all 1s ease-in-out;
 }
 
 /* Avatar */
 .splash-avatar {
-  width: 60px;
-  height: 60px;
-  margin: 20px auto;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease-out 1.5s forwards;
+  width: 300px;
+  max-width: 60vw;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 230, 255, 0.4);
+  margin-bottom: 24px;
+  transition: all 1.2s ease-in-out;
+  transform: translateY(30px);
 }
 
-/* Title */
+/* Text */
 .splash-title {
-  font-size: 1.8rem;
-  color: #ffffff;
-  margin: 20px 0;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease-out 2.5s forwards;
+  color: white;
+  font-size: 24px;
+  margin: 12px 0 4px;
+  transition: all 1s ease-in-out;
 }
 
-/* Description */
 .splash-description {
-  font-size: 1.2rem;
-  color: #ffffff;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease-out 2.5s forwards;
+  color: #ff00aa;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(255, 0, 145, 0.4);
+  margin-bottom: 36px;
+  transition: all 1s ease-in-out;
 }
 
-/* Orb */
+/* Orb Animation */
 .splash-orb {
-  width: 40px;
-  height: 40px;
-  margin: 20px auto;
-  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
+  background: radial-gradient(circle at center, #00f0ff, #0ff0ff22);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease-out 3.5s forwards, breathing 4s infinite;
-}
-
-/* Particle effect container */
-.particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Particle styles */
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  animation: particle 10s infinite;
-}
-
-/* Keyframes */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @keyframes breathing {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
-  }
-}
-
-@keyframes particle {
   0% {
-    transform: translate(0, 0);
-    opacity: 0;
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
   }
   50% {
-    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
   }
   100% {
-    transform: translate(calc(var(--x) * 100vw), calc(var(--y) * 100vh));
-    opacity: 0;
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
   }
 }
 
-/* Dot or Section Item if any */
-.content-section {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  padding: 20px;
-  position: relative;
-  z-index: 1;
-}
-.content-section .item {
-  width: 24px;
-  height: 24px;
-  background-color: #00e6ff;
-  border-radius: 50%;
-  animation: fadeScaleIn 1s ease-out forwards;
-}
-.content-section .item:nth-child(1) {
-  animation-delay: 3.5s;
-}
-.content-section .item:nth-child(2) {
-  animation-delay: 4s;
-}
-.content-section .item:nth-child(3) {
-  animation-delay: 4.5s;
+/* Responsive */
+@media (max-width: 768px) {
+  .splash-avatar {
+    width: 220px;
+  }
+
+  .splash-title {
+    font-size: 20px;
+  }
+
+  .splash-description {
+    font-size: 16px;
+  }
+
+  .splash-orb {
+    width: 60px;
+    height: 60px;
+  }
 }
