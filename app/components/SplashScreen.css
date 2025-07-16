@@ -19,16 +19,38 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(0, 255, 255, 0.8);
+  background: rgba(0, 255, 255, 0.7);
   box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
-  animation: float 8s infinite ease-in-out, flicker 2s infinite ease-in-out;
+  animation: float 10s infinite ease-in-out, flicker 2.5s infinite ease-in-out;
   pointer-events: none;
   z-index: 2;
 }
 
+/* Warna tambahan */
+.firefly.cyan {
+  background: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px #0ff;
+}
+.firefly.magenta {
+  background: rgba(255, 0, 255, 0.7);
+  box-shadow: 0 0 10px #f0f;
+}
+.firefly.purple {
+  background: rgba(140, 0, 255, 0.6);
+  box-shadow: 0 0 12px #a070ff;
+}
+.firefly.gold {
+  background: rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 12px #ffd700;
+}
+.firefly.blue {
+  background: rgba(0, 153, 255, 0.7);
+  box-shadow: 0 0 10px #3399ff;
+}
+
 @keyframes float {
   0% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-80px) translateX(20px); }
+  50% { transform: translateY(-60px) translateX(30px); }
   100% { transform: translateY(0) translateX(0); }
 }
 

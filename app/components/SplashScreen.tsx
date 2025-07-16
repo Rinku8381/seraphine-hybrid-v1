@@ -89,6 +89,19 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         <span className="firefly" style={{ top: "75%", left: "10%", animationDelay: "4s" }}></span>
         <span className="firefly" style={{ top: "85%", left: "50%", animationDelay: "5s" }}></span>
 
+        {/* Enhanced Magical Fireflies */}
+        <>
+        <span className="firefly cyan" style={{ top: "10%", left: "20%", animationDelay: "0s" }}></span>
+        <span className="firefly magenta" style={{ top: "30%", left: "70%", animationDelay: "1.3s" }}></span>
+        <span className="firefly purple" style={{ top: "45%", left: "35%", animationDelay: "2.1s" }}></span>
+        <span className="firefly gold" style={{ top: "60%", left: "80%", animationDelay: "0.6s" }}></span>
+        <span className="firefly blue" style={{ top: "72%", left: "10%", animationDelay: "3.5s" }}></span>
+        <span className="firefly cyan" style={{ top: "80%", left: "55%", animationDelay: "1.8s" }}></span>
+        <span className="firefly magenta" style={{ top: "20%", left: "85%", animationDelay: "2.9s" }}></span>
+        <span className="firefly purple" style={{ top: "38%", left: "50%", animationDelay: "0.9s" }}></span>
+        <span className="firefly gold" style={{ top: "65%", left: "30%", animationDelay: "4.2s" }}></span>
+        <span className="firefly blue" style={{ top: "5%", left: "5%", animationDelay: "3s" }}></span>
+        </>
         {/* Particle Effects */}
         <div className="splash-container">
           <div className="particle-dot dot1"></div>
