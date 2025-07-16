@@ -13,7 +13,67 @@
   box-sizing: border-box;
 }
 
-/* === Firefly Particles === */
+.starlight-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+              radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 80%),
+              radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 90%);
+  animation: starlightPulse 6s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+@keyframes starlightPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1.03);
+  }
+}
+
+.rising-particle {
+  position: absolute;
+  bottom: -10px;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to top, rgba(0,255,255,0.4), transparent);
+  opacity: 0.5;
+  animation: rise 8s linear infinite;
+  z-index: 1;
+  transform-origin: bottom center;
+}
+
+.rising-particle:nth-child(odd) {
+  animation-duration: 8s;
+  width: 1px;
+  background: linear-gradient(to top, rgba(255,0,255,0.3), transparent);
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-150vh) scaleX(1.2);
+    opacity: 0;
+  }
+}
+
 .firefly {
   position: absolute;
   width: 6px;
@@ -21,9 +81,10 @@
   border-radius: 50%;
   background: rgba(0, 255, 255, 0.7);
   box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
-  animation: float 10s infinite ease-in-out, flicker 2.5s infinite ease-in-out;
+  animation: float 12s infinite ease-in-out, flicker 2.5s infinite ease-in-out;
   pointer-events: none;
   z-index: 2;
+  transform-origin: center center;
 }
 
 .firefly.tiny {
@@ -57,7 +118,8 @@
 
 @keyframes float {
   0% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-60px) translateX(30px); }
+  30% { transform: translateY(-40px) translateX(20px); }
+  70% { transform: translateY(-20px) translateX(-10px); }
   100% { transform: translateY(0) translateX(0); }
 }
 
@@ -69,7 +131,17 @@
   100% { opacity: 0.1; transform: scale(1); }
 }
 
-/* === Background Image === */
+.effects-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
 .splash-container::before {
   content: '';
   background: url('/assets/splash/splash-bg.png') no-repeat center center;
@@ -137,7 +209,7 @@
   text-align: center;
   text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
   z-index: 3;
-  transform: translateY(120px);
+  transform: translateY(60px);
 }
 
 .brand-text {
@@ -146,7 +218,7 @@
   font-size: 24px;
   font-weight: bold;
   z-index: 3;
-  transform: translateY(120px);
+  transform: translateY(60px);
 }
 
 /* === Dots Indicator === */
@@ -190,3 +262,17 @@
     font-size: 18px;
   }
 }
+
+/* Layer Resetting */
+.splash-container::before {
+  z-index: 0; /* background image */
+}
+
+/* Z-index structure update */
+.splash-container::before { z-index: 0; }        /* background */
+.effects-layer { z-index: 2; }                   /* starlight, fireflies, rising fx */
+.avatar-wrapper,
+.splash-logo,
+.main-text,
+.brand-text,
+.loading-orb { z-index: 3; }                     /* content */
