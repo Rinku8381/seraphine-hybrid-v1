@@ -5,9 +5,10 @@ import "./OnboardingStep1.css";
 
 interface OnboardingStep1Props {
   onNext: () => void;
+  onSkip: () => void;
 }
 
-export default function OnboardingStep1({ onNext }: OnboardingStep1Props) {
+export default function OnboardingStep1({ onNext, onSkip }: OnboardingStep1Props) {
   return (
     <div className="onboarding-step1">
       <div className="onboarding-container">
@@ -49,6 +50,9 @@ export default function OnboardingStep1({ onNext }: OnboardingStep1Props) {
           <button className="setup-button" onClick={onNext}>
             <span className="button-text">Mulai Setup</span>
             <div className="button-arrow">→</div>
+          </button>
+          <button className="skip-button" onClick={onSkip}>
+            <span className="button-text">Skip</span>
           </button>
         </div>
       </div>

@@ -31,7 +31,6 @@ export default function Home() {
   };
 
   const handleTermsDecline = () => {
-    // Handle app exit or return to splash
     setCurrentScreen("splash");
   };
 
@@ -51,6 +50,10 @@ export default function Home() {
     setCurrentScreen("onboarding1");
   };
 
+  const handleOnboardingSkip = () => {
+    setCurrentScreen("dashboard");
+  };
+
   const handleOnboardingStep3Next = () => {
     setCurrentScreen("welcome");
   };
@@ -63,27 +66,42 @@ export default function Home() {
     setCurrentScreen("dashboard");
   };
 
+  const handleLogout = () => {
+    setCurrentScreen("login");
+  };
+
   return (
     <main className="app-container">
       {currentScreen === "splash" && (
-        <SplashScreen onComplete={handleSplashComplete} />
+        <SplashScreen
+          onComplete={handleSplashComplete}
+          onTermsDecline={handleTermsDecline}
+          onTermsAccept={handleTermsAccept}
+        />
       )}
+
       {currentScreen === "terms" && (
         <TermsScreen
           onAccept={handleTermsAccept}
           onDecline={handleTermsDecline}
+          isVisible={currentScreen === "terms"}
         />
       )}
+
       {currentScreen === "login" && (
         <LoginScreen onLoginSuccess={handleLoginSuccess} />
       )}
       {currentScreen === "onboarding1" && (
-        <OnboardingStep1 onNext={handleOnboardingStep1Next} />
+        <OnboardingStep1 
+          onNext={handleOnboardingStep1Next}
+          onSkip={handleOnboardingSkip}
+        />
       )}
       {currentScreen === "onboarding2" && (
         <OnboardingStep2
           onNext={handleOnboardingStep2Next}
           onBack={handleOnboardingStep2Back}
+          onSkip={handleOnboardingSkip}
         />
       )}
       {currentScreen === "onboarding3" && (
@@ -95,7 +113,9 @@ export default function Home() {
       {currentScreen === "welcome" && (
         <WelcomeComplete onToDashboard={handleWelcomeComplete} />
       )}
-      {currentScreen === "dashboard" && <Dashboard />}
+      {currentScreen === "dashboard" && (
+        <Dashboard onLogout={handleLogout} />
+      )}
     </main>
   );
 }

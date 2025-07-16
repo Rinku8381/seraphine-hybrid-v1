@@ -2,28 +2,83 @@
 import React, { useEffect, useState } from "react";
 import "./SplashScreen.css";
 import ParticleEffects from "./ParticleEffects";
+import TermsScreen from "./TermsScreen";
 
 interface SplashScreenProps {
-onComplete?: () => void;
+  onComplete?: () => void;
+  onTermsDecline?: () => void;
+  onTermsAccept?: () => void;
 }
 
-export default function SplashScreen({ onComplete }: SplashScreenProps): React.JSX.Element {
-const [isLoaded, setIsLoaded] = useState(false);
-const [showContent, setShowContent] = useState(false);
-const [showText, setShowText] = useState(false);
+export default function SplashScreen({ onComplete, onTermsDecline, onTermsAccept }: SplashScreenProps): React.JSX.Element {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
 
-useEffect(() => {
-const timers = [
-setTimeout(() => setIsLoaded(true), 800),
-setTimeout(() => setShowContent(true), 2000),
-setTimeout(() => setShowText(true), 3500),
-setTimeout(() => onComplete?.(), 12000),
-];
-return () => timers.forEach(clearTimeout);
-}, [onComplete]);
 
-return (
 
+  useEffect(() => {
+    if (!onComplete) return;
+
+    const timers = [
+      setTimeout(() => setIsLoaded(true), 800),
+      setTimeout(() => setShowContent(true), 2000),
+      setTimeout(() => setShowText(true), 3500),
+      setTimeout(() => {
+        setShowTerms(true);
+        // Auto-hide terms after 30 seconds if not interacted
+        const termsTimeout = setTimeout(() => {
+          if (showTerms) {
+            setShowTerms(false);
+            if (onComplete) onComplete();
+          }
+        }, 30000);
+        return () => clearTimeout(termsTimeout);
+      }, 15000),
+    ];
+
+    return () => {
+      timers.forEach(clearTimeout);
+    };
+  }, [onComplete, showTerms]);
+
+  // Handle TermsScreen actions
+  const handleTermsAccept = () => {
+    setShowTerms(false);
+    if (onTermsAccept) {
+      onTermsAccept();
+    } else if (onComplete) {
+      onComplete();
+    }
+  };
+
+  const handleTermsDecline = () => {
+    setShowTerms(false);
+    if (onTermsDecline) {
+      onTermsDecline();
+    } else {
+      // Reset splash screen state and restart loading sequence
+      setIsLoaded(false);
+      setShowContent(false);
+      setShowText(false);
+      setShowTerms(false);
+      
+      // Restart the loading sequence
+      const timers = [
+        setTimeout(() => setIsLoaded(true), 800),
+        setTimeout(() => setShowContent(true), 2000),
+        setTimeout(() => setShowText(true), 3500),
+        setTimeout(() => setShowTerms(true), 15000),
+      ];
+
+      return () => {
+        timers.forEach(clearTimeout);
+      };
+    }
+  };
+
+  return (
     <main className="splash-main">
       {/* 🎵 Background Music */}
       <audio autoPlay loop preload="auto">
@@ -92,6 +147,13 @@ return (
           className={`splash-logo ${isLoaded ? "loaded" : ""}`}
         />
 
+        {/* 📄 Terms Screen */}
+        <TermsScreen
+          isVisible={showTerms}
+          onAccept={handleTermsAccept}
+          onDecline={handleTermsDecline}
+        />
+
         {/* 🌸 Avatar */}
         <div className="avatar-wrapper">
           <div className="avatar-glow" />
@@ -116,7 +178,20 @@ return (
           alt="Loading..."
           className={`loading-orb ${showContent ? "show" : ""}`}
         />
-        </div>
+      </div>
+
+      {/* Terms Screen Overlay */}
+      <TermsScreen
+        isVisible={showTerms}
+        onAccept={() => {
+          setShowTerms(false);
+          onComplete?.();
+        }}
+        onDecline={() => {
+          setShowTerms(false);
+          onComplete?.();
+        }}
+      />
     </main>
   );
 }

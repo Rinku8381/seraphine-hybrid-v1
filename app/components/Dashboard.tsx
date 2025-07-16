@@ -49,7 +49,11 @@ interface Notification {
   time: string;
 }
 
-export default function Dashboard() {
+interface DashboardProps {
+  onLogout: () => void;
+}
+
+export default function Dashboard({ onLogout }: DashboardProps) {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [isAddDeviceModalOpen, setIsAddDeviceModalOpen] = useState(false);
   const [isSearchFilterOpen, setIsSearchFilterOpen] = useState(false);
@@ -57,6 +61,7 @@ export default function Dashboard() {
   const [isDeviceSettingsOpen, setIsDeviceSettingsOpen] = useState(false);
   const [isSettingsPanelOpen, setIsSettingsPanelOpen] = useState(false);
   const [isSeraphineAIOpen, setIsSeraphineAIOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isPersonalityCoreOpen, setIsPersonalityCoreOpen] = useState(false);
   const [isHeroModeOpen, setIsHeroModeOpen] = useState(false);
   const [isHeroModeAlertOpen, setIsHeroModeAlertOpen] = useState(false);
@@ -333,8 +338,55 @@ export default function Dashboard() {
     setIsAdminPanelOpen(false);
   };
 
+  const handleLogout = () => {
+    setShowLogoutModal(false);
+    onLogout();
+  };
+
   return (
     <div className="dashboard-container">
+      {/* Logout Modal */}
+      {showLogoutModal && (
+        <div className="logout-modal">
+          <div className="logout-content">
+            <h2>Are you sure you want to logout?</h2>
+            <div className="logout-buttons">
+              <button onClick={() => setShowLogoutModal(false)}>Cancel</button>
+              <button onClick={handleLogout} className="logout-btn">Logout</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Navigation Menu */}
+      <nav className="dashboard-nav">
+        <div className="nav-items">
+          <button 
+            onClick={() => setCurrentView("dashboard")}
+            className={`nav-item ${currentView === "dashboard" ? "active" : ""}`}
+          >
+            Dashboard
+          </button>
+          <button 
+            onClick={() => setCurrentView("room-selector")}
+            className={`nav-item ${currentView === "room-selector" ? "active" : ""}`}
+          >
+            Rooms
+          </button>
+          <button 
+            onClick={() => setIsSettingsPanelOpen(true)}
+            className="nav-item"
+          >
+            Settings
+          </button>
+          <button 
+            onClick={() => setShowLogoutModal(true)}
+            className="nav-item logout-btn"
+          >
+            Logout
+          </button>
+        </div>
+      </nav>
       <CyberpunkAtmosphere
         intensity="moderate"
         effects={{

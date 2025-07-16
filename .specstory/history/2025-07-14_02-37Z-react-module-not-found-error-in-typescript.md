@@ -71,3 +71,15 @@ in the terminal window where it is running.
 
 ---
 
+_**User**_
+
+Can TermsScreen.css & TermsScreen.tsx be changed so that instead of transitioning to TermsScreen after SplashScreen, it appears as a popup on top of SplashScreen? So after SplashScreen loads for a few seconds, for example 15 seconds, the TermsScreen popup appears directly.
+
+---
+
+_**Assistant**_
+
+Yes, your current setup already supports showing `TermsScreen` as a popup overlay on top of `SplashScreen`. The `TermsScreen` component is rendered at the end of your `SplashScreen.tsx` and is controlled by the 
+
+---
+

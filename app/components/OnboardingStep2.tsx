@@ -6,11 +6,13 @@ import "./OnboardingStep2.css";
 interface OnboardingStep2Props {
   onNext: () => void;
   onBack: () => void;
+  onSkip: () => void;
 }
 
 export default function OnboardingStep2({
   onNext,
   onBack,
+  onSkip,
 }: OnboardingStep2Props) {
   const [selectedLanguage, setSelectedLanguage] = useState("indonesia");
   const [selectedVoice, setSelectedVoice] = useState("lembut");
@@ -119,15 +121,17 @@ export default function OnboardingStep2({
 
         {/* Navigation Buttons */}
         <div className="navigation-section">
-          <button className="nav-button back-button" onClick={onBack}>
-            <span className="button-arrow">←</span>
-            <span className="button-text">Kembali</span>
-          </button>
-
-          <button className="nav-button next-button" onClick={onNext}>
-            <span className="button-text">Lanjut</span>
-            <span className="button-arrow">→</span>
-          </button>
+          <div className="button-section">
+            <button className="back-button" onClick={onBack}>
+              <span className="button-text">Back</span>
+            </button>
+            <button className="next-button" onClick={onNext}>
+              <span className="button-text">Next</span>
+            </button>
+            <button className="skip-button" onClick={onSkip}>
+              <span className="button-text">Skip</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

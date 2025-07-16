@@ -5,11 +5,12 @@ import "./TermsScreen.css";
 interface TermsScreenProps {
   onAccept: () => void;
   onDecline: () => void;
+  isVisible: boolean;
 }
 
-export default function TermsScreen({ onAccept, onDecline }: TermsScreenProps) {
+export default function TermsScreen({ onAccept, onDecline, isVisible }: TermsScreenProps) {
   return (
-    <div className="terms-screen">
+    <div className={`terms-screen ${isVisible ? 'visible' : ''}`} tabIndex={-1} role="dialog" aria-modal="true">
       <div className="terms-container">
         <div className="terms-header">
           <h1 className="terms-title">Terms & Conditions</h1>
