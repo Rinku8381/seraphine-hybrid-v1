@@ -1,165 +1,127 @@
 /* === Splash Container === */
 .splash-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   height: 100vh;
   width: 100%;
-  background: linear-gradient(45deg, #2b004e, #000000);
+  background: #010116;
   overflow: hidden;
   position: relative;
   z-index: 0;
+  font-family: 'Orbitron', sans-serif;
+  padding-top: 60px; /* kasih ruang supaya tidak bentrok dengan logo */
+  box-sizing: border-box;
 }
 
-/* === Background Gradient === */
+/* === Firefly Particles === */
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
+  animation: float 8s infinite ease-in-out, flicker 2s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-80px) translateX(20px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* === Background Image === */
 .splash-container::before {
   content: '';
+  background: url('/assets/splash/splash-bg.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(75, 0, 130, 0.2), rgba(0, 0, 0, 0.8));
+  right: 0;
+  bottom: 0;
   z-index: 1;
 }
 
-/* === Avatar === */
-.splash-avatar {
-  max-width: 400px;
-  width: fit-content;
-  height: fit-content;
-  position: relative;
-  z-index: 3;
-}
-
-/* === Avatar Glow Circle === */
-.avatar-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 255, 255, 0.8) 0%, rgba(0, 0, 255, 0.6) 20%, rgba(0, 0, 0, 0) 70%);
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  filter: blur(40px);
-  pointer-events: none;
-  animation: glowPulse 2s infinite;
-}
-
-@keyframes glowPulse {
-  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.9); }
-  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-  100% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.9); }
-}
-
-/* === Background Avatar === */
-.background-avatar {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  opacity: 0.1;
-  filter: blur(10px);
-}
-
-/* === Loading Orb === */
-.loading-orb {
-  position: absolute;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  width: 100px;
-  height: 100px;
-}
-
-/* === Logo === */
+/* === Logo (Top-Right) === */
 .splash-logo {
   position: absolute;
   top: 30px;
   right: 30px;
-  width: 70px;
-  height: auto;
+  width: 80px;
+  z-index: 4;
+}
+
+/* === Title === */
+.splash-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 30px #00f0ff;
+  margin-bottom: 20px;
   z-index: 3;
-  filter: drop-shadow(0 0 10px #00ff00);
 }
 
-/* === Neon Text === */
-.neon-text {
-  font-size: 24px;
-  color: #00ff00;
-  text-align: center;
-  margin: 20px 0;
-  z-index: 3;
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-shadow: 
-    0 0 7px #00ff00,
-    0 0 10px #00ff00,
-    0 0 21px #00ff00,
-    0 0 42px #00ff00,
-    0 0 82px #00ff00,
-    0 0 92px #00ff00,
-    0 0 102px #00ff00,
-    0 0 151px #00ff00;
-  animation: neon 1.5s ease-in-out infinite alternate;
+/* === Avatar & Glow === */
+.avatar-wrapper {
+  position: relative;
+  z-index: 2;
+  transform: translateY(100px);
 }
 
-@keyframes neon {
-  from {
-    text-shadow: 
-      0 0 7px #00ff00,
-      0 0 10px #00ff00,
-      0 0 21px #00ff00,
-      0 0 42px #00ff00,
-      0 0 82px #00ff00,
-      0 0 92px #00ff00,
-      0 0 102px #00ff00,
-      0 0 151px #00ff00;
-  }
-  to {
-    text-shadow: 
-      0 0 7px #00ff00,
-      0 0 10px #00ff00,
-      0 0 21px #00ff00,
-      0 0 42px #00ff00,
-      0 0 82px #00ff00,
-      0 0 92px #00ff00,
-      0 0 102px #00ff00,
-      0 0 151px #0000ff;
-  }
+.avatar-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0,255,255,0.6) 0%, transparent 80%);
+  filter: blur(100px);
+  border-radius: 50%;
+  z-index: 1;
 }
 
-/* === Main Text === */
+.splash-avatar {
+  max-height: 520px;
+  width: auto;
+  z-index: 2;
+  position: relative;
+}
+
+/* === Text Area === */
 .main-text {
+  margin-top: 24px;
   font-size: 20px;
-  font-weight: bold;
-  margin: 4px 0;
-  text-align: center;
-  color: #00ff00;
-  text-shadow: 0 0 5px #00ff00;
-  z-index: 3;
-}
-
-.main-text {
   color: #ffffff;
-  text-shadow: 0 0 6px #0ff, 0 0 10px #0ff, 0 0 14px #00f0ff;
+  text-align: center;
+  text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
+  z-index: 3;
+  transform: translateY(120px);
 }
 
 .brand-text {
-  color: #ff0091;
-  text-shadow: 0 0 6px #ff0091, 0 0 10px #ff0091, 0 0 14px #ff0091;
+  color: #ff00cc;
+  text-shadow: 0 0 6px #ff00cc, 0 0 14px #ff00cc;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  transform: translateY(120px);
 }
 
-/* === Dots / Indicators === */
+/* === Dots Indicator === */
 .content-section {
   display: flex;
   gap: 10px;
-  margin-top: 16px;
+  margin-top: 24px;
   z-index: 3;
 }
 
@@ -171,46 +133,28 @@
   box-shadow: 0 0 6px #ff91da;
 }
 
-/* === Particles (Animated Dots) === */
-.particle-dot {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background-color: #00f0ff;
-  border-radius: 50%;
-  animation: flicker 2s infinite ease-in-out;
-  z-index: 0;
-}
-
-.dot1 { top: 20%; left: 10%; animation-delay: 0s; }
-.dot2 { top: 40%; left: 80%; animation-delay: 1s; }
-.dot3 { top: 60%; left: 30%; animation-delay: 2s; }
-.dot4 { top: 80%; left: 60%; animation-delay: 3s; }
-
-@keyframes flicker {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
-}
-
 /* === Responsive === */
 @media (max-width: 768px) {
+  .splash-title {
+    font-size: 32px;
+  }
+
   .splash-avatar {
-    max-width: 160px;
+    max-height: 280px;
   }
 
   .avatar-glow {
-    width: 50px;
-    height: 50px;
-  }
-
-  .main-text, .brand-text {
-    font-size: 24px;
-    padding: 0 16px;
+    width: 300px;
+    height: 300px;
   }
 
   .splash-logo {
-    width: 48px;
+    width: 40px;
     top: 16px;
     right: 16px;
+  }
+
+  .main-text, .brand-text {
+    font-size: 18px;
   }
 }

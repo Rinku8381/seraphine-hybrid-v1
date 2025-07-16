@@ -58,11 +58,14 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         />
 
         {/* Avatar */}
-        <img
-          src="/assets/splash/seraphine-avatar.png"
-          alt="Seraphine Avatar"
-          className={`splash-avatar ${showContent ? "show" : ""}`}
-        />
+        <div className="avatar-wrapper">
+          <div className="avatar-glow"></div>
+          <img
+            src="/assets/splash/seraphine-avatar.png"
+            alt="Seraphine"
+            className={`splash-avatar ${showContent ? "show" : ""}`}
+          />
+        </div>
 
         {/* Text */}
         <h2 className={`main-text ${showText ? "show" : ""}`}>
@@ -78,13 +81,22 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           alt="Loading..."
           className={`loading-orb ${showContent ? "show" : ""}`}
         />
-        {/* Section */}
+        {/* Fireflies */}
+        <span className="firefly" style={{ top: "10%", left: "20%", animationDelay: "0s" }}></span>
+        <span className="firefly" style={{ top: "30%", left: "70%", animationDelay: "1s" }}></span>
+        <span className="firefly" style={{ top: "50%", left: "40%", animationDelay: "2s" }}></span>
+        <span className="firefly" style={{ top: "65%", left: "80%", animationDelay: "3s" }}></span>
+        <span className="firefly" style={{ top: "75%", left: "10%", animationDelay: "4s" }}></span>
+        <span className="firefly" style={{ top: "85%", left: "50%", animationDelay: "5s" }}></span>
+
+        {/* Particle Effects */}
         <div className="splash-container">
           <div className="particle-dot dot1"></div>
           <div className="particle-dot dot2"></div>
           <div className="particle-dot dot3"></div>
           <div className="particle-dot dot4"></div>
         </div>
+        
       </div>
     </main>
   );
