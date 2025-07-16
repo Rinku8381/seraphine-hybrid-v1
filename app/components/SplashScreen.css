@@ -26,6 +26,13 @@
   z-index: 2;
 }
 
+.firefly.tiny {
+  width: 3px;
+  height: 3px;
+  filter: blur(4px);
+  opacity: 0.3;
+}
+
 /* Warna tambahan */
 .firefly.cyan {
   background: rgba(0, 255, 255, 0.8);
@@ -55,8 +62,11 @@
 }
 
 @keyframes flicker {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
+  0%   { opacity: 0.1; transform: scale(1); }
+  25%  { opacity: 0.6; transform: scale(1.2); }
+  50%  { opacity: 1; transform: scale(0.8); }
+  75%  { opacity: 0.4; transform: scale(1.1); }
+  100% { opacity: 0.1; transform: scale(1); }
 }
 
 /* === Background Image === */

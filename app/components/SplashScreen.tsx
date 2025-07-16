@@ -25,7 +25,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     const orbTimer = setTimeout(() => setShowOrb(true), 5000);
     const completeTimer = setTimeout(() => {
       onComplete?.();
-    }, 12000); // ⏳ Redirect after 15s
+    }, 12000); // ⏳ Redirect after 30s
 
     return () => {
       clearTimeout(logoTimer);
@@ -36,8 +36,12 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     };
   }, [onComplete]);
 
-  return (
+    return (
     <main className="splash-main">
+      {/* === Audio Background === */}
+  <audio autoPlay loop preload="auto">
+    <source src="/assets/splash/splash-futuristic-synthwave.mp3" type="audio/mpeg" />
+  </audio>
       <div className="splash-container">
         <ParticleEffects
           intensity="medium"
@@ -88,6 +92,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         <span className="firefly" style={{ top: "65%", left: "80%", animationDelay: "3s" }}></span>
         <span className="firefly" style={{ top: "75%", left: "10%", animationDelay: "4s" }}></span>
         <span className="firefly" style={{ top: "85%", left: "50%", animationDelay: "5s" }}></span>
+        <span className="firefly tiny cyan" style={{ top: "50%", left: "25%", animationDelay: "2.2s" }}></span>
 
         {/* Enhanced Magical Fireflies */}
         <>
@@ -101,6 +106,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         <span className="firefly purple" style={{ top: "38%", left: "50%", animationDelay: "0.9s" }}></span>
         <span className="firefly gold" style={{ top: "65%", left: "30%", animationDelay: "4.2s" }}></span>
         <span className="firefly blue" style={{ top: "5%", left: "5%", animationDelay: "3s" }}></span>
+        <span className="firefly tiny magenta" style={{ top: "15%", left: "60%", animationDelay: "3.3s" }}></span>
         </>
         {/* Particle Effects */}
         <div className="splash-container">
