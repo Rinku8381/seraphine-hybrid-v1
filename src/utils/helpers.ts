@@ -52,7 +52,7 @@ export const validateSchema = <T>(
 ): T => {
   const result = schema.safeParse(data);
   if (!result.success) {
-    throw new Error(JSON.stringify(result.error.errors));
+    throw new Error(JSON.stringify(result.error.issues));
   }
   return result.data;
 };

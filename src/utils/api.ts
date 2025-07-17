@@ -22,7 +22,7 @@ export const validateRequest = <T>(schema: z.Schema<T>) => {
     return req.json().then((data) => {
       const result = schema.safeParse(data);
       if (!result.success) {
-        throw new ApiError(400, JSON.stringify(result.error.errors));
+        throw new ApiError(400, JSON.stringify(result.error.issues));
       }
       return result.data;
     });
