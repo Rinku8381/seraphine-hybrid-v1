@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Disable standalone output for Windows compatibility
-  output: process.env.NODE_ENV === 'production' ? 'export' : 'default',
+  // output: process.env.NODE_ENV === 'production' ? 'export' : 'default',
+  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
   trailingSlash: true,
   
   // Performance and Optimization
   reactStrictMode: true,
-  swcMinify: true,
+
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
     styledComponents: true,
@@ -82,32 +83,25 @@ const nextConfig = {
   },
   
   // Internationalization
-  i18n: {
-    locales: ['en', 'vi'],
-    defaultLocale: 'en',
-    localeDetection: true
-  },
+  // i18n config is unsupported in App Router, so remove or comment out
+  // i18n: {
+  //   locales: ['en', 'vi'],
+  //   defaultLocale: 'en',
+  //   localeDetection: true
+  // },
   
   // Build optimization
-  swcMinifyOptions: {
-    compress: {
-      passes: 2,
-      drop_console: process.env.NODE_ENV === 'production'
-    }
-  },
+
   
   // Asset optimization
   assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
   
   // Analytics and monitoring
-  analytics: {
-    enabled: process.env.NODE_ENV === 'production'
-  },
+
   
   // Development settings
   devIndicators: {
-    buildActivity: true,
-    buildActivityPosition: 'bottom-right'
+    position: 'bottom-right'
   },
   
   // Error handling

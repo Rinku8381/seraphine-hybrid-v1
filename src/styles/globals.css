@@ -1,5 +1,6 @@
-/* Reset and Base Styles */
-/* Tailwind directives removed; ensure you use Tailwind's build process if you want to include them */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Custom Tailwind styles */
 @layer components {

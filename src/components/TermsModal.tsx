@@ -2,7 +2,7 @@
 
 "use client";
 
-import "./TermsScreen.css";
+import "../styles/TermsScreen.css";
 
 interface TermsScreenProps {
   onAccept: () => void;

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import styles from './ParticleEffects.module.css';
+import styles from '../styles/ParticleEffects.module.css';
 
 export default function ParticleEffects() {
   const particlesRef = useRef<HTMLDivElement>(null);
