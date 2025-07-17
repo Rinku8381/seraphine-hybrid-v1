@@ -1,41 +1,48 @@
-import React, { useEffect, useState } from "react";
-import "./ParticleEffects.css";
+'use client';
 
-interface ParticleEffectsProps {
-  intensity: string;
-  effects: {
-    particles: boolean;
-    neural: boolean;
-    scanlines: boolean;
-    ambientLights: boolean;
-    dataStream: boolean;
-  };
-}
+import React, { useEffect, useRef } from 'react';
+import styles from './ParticleEffects.module.css';
 
-const TOTAL_PARTICLES = 40;
-
-export default function ParticleEffects({ intensity, effects }: ParticleEffectsProps) {
-  const [particles, setParticles] = useState<JSX.Element[]>([]);
+export default function ParticleEffects() {
+  const particlesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const generatedParticles = Array.from({ length: TOTAL_PARTICLES }, (_, index) => {
-      const x = Math.random() - 0.5;
-      const y = Math.random() - 0.5;
-      const duration = 10 + Math.random() * 10;
-      return (
-        <div
-          key={index}
-          className={`particle ${intensity === 'high' ? 'high-intensity' : ''}`}
-          style={{
-            "--x": x.toString(),
-            "--y": y.toString(),
-            animationDuration: `${duration}s`,
-          } as React.CSSProperties}
-        />
-      );
-    });
-    setParticles(generatedParticles);
+    const container = particlesRef.current;
+    if (!container) return;
+
+    const createParticle = (intensity: boolean = false) => {
+      const particle = document.createElement('div');
+      particle.className = styles.particle;
+      
+      if (intensity) {
+        particle.classList.add(styles['high-intensity']);
+      }
+
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      particle.style.setProperty('--x', x.toString());
+      particle.style.setProperty('--y', y.toString());
+
+      container.appendChild(particle);
+
+      setTimeout(() => {
+        particle.classList.add(styles.fadeOut);
+        setTimeout(() => {
+          particle.remove();
+        }, 1000);
+      }, Math.random() * 5000 + 2000);
+    };
+
+    const interval = setInterval(() => {
+      createParticle(Math.random() > 0.8);
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
-  return <div className="particles">{particles}</div>;
+  return (
+    <div ref={particlesRef} className={styles.particles} />
+  );
 }

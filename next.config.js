@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // App directory is now stable in Next.js 14
-  output: "export",
+  output: "standalone",
   trailingSlash: true,
   images: {
     unoptimized: process.env.NODE_ENV === 'development',
@@ -10,18 +10,10 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
-  assetPrefix: process.env.NODE_ENV === "production" ? "" : "",
-  basePath: "",
-  distDir: "out",
   
   // Performance optimizations
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: true,
-    serverActions: true,
-    turbo: true,
-    optimizeFonts: true,
-    mdxRs: true,
     scrollRestoration: true,
   },
   

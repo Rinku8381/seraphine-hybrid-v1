@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import "./DeviceCards.css";
 
-interface Device {
+export interface Device {
   id: string;
   name: string;
   type: string;
