@@ -1,20 +1,39 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // App directory is now stable in Next.js 14
-  output: "standalone",
+  // Disable standalone output for Windows compatibility
+  output: process.env.NODE_ENV === 'production' ? 'export' : 'default',
   trailingSlash: true,
+  
+  // Performance and Optimization
+  reactStrictMode: true,
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+    styledComponents: true,
+    emotion: true
+  },
+  
+  // Image optimization
   images: {
-    unoptimized: process.env.NODE_ENV === 'development',
     domains: ['localhost'],
     minimumCacheTTL: 60,
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+        pathname: '/**'
+      }
+    ],
+    unoptimized: process.env.NODE_ENV === 'development'
   },
   
   // Performance optimizations
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false, // Disable CSS optimization during development
     scrollRestoration: true,
+    optimizePackageImports: ['react', 'next']
   },
   
   // Security headers
@@ -41,6 +60,10 @@ const nextConfig = {
         {
           key: 'Content-Security-Policy',
           value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';"
+        },
+        {
+          key: 'Strict-Transport-Security',
+          value: 'max-age=31536000; includeSubDomains; preload'
         }
       ]
     }
@@ -50,12 +73,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
     styledComponents: true
-  },
-  
-  // Analytics and monitoring
-  analytics: {
-    enabled: true,
-    beta: true
   },
   
   // Environment variables
@@ -72,22 +89,38 @@ const nextConfig = {
   },
   
   // Build optimization
-  swcMinify: true,
   swcMinifyOptions: {
     compress: {
-      passes: 2
+      passes: 2,
+      drop_console: process.env.NODE_ENV === 'production'
     }
   },
   
-  // Image optimization
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-        pathname: '/**'
-      }
-    ]
+  // Asset optimization
+  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
+  
+  // Analytics and monitoring
+  analytics: {
+    enabled: process.env.NODE_ENV === 'production'
+  },
+  
+  // Development settings
+  devIndicators: {
+    buildActivity: true,
+    buildActivityPosition: 'bottom-right'
+  },
+  
+  // Error handling
+  poweredByHeader: false,
+  
+  // Server settings
+  serverRuntimeConfig: {
+    mySecret: process.env.MY_SECRET
+  },
+  
+  // Client settings
+  publicRuntimeConfig: {
+    staticFolder: '/static'
   }
 };
 

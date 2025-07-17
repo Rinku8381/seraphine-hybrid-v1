@@ -40,7 +40,10 @@ export default function SplashScreen(): JSX.Element {
         <div className={styles.starlightOverlay} />
 
         {[...Array(10)].map((_, i) => (
-          <span key={i} className={styles.risingParticle} style={{ left: `${5 + i * 10}%` }} />
+          <span
+            key={i}
+            className={`${styles.risingParticle} ${styles[`particle${i}`]}`}
+          />
         ))}
 
         <img src="/assets/splash/logo.svg" alt="Seraphine Logo" className={`${styles.splashLogo} ${isLoaded ? styles.loaded : ''}`} />

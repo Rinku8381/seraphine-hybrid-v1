@@ -174,7 +174,13 @@ const DeviceCards: React.FC<DeviceCardsProps> = ({
     <div className="device-cards-container">
       <div className="device-cards-header">
         <div className="breadcrumb">
-          <button className="back-button" onClick={onBack}>
+          <button
+            className="back-button"
+            onClick={onBack}
+            title="Go back"
+            aria-label="Go back"
+          >
+            <span className="visually-hidden">Go back</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path
                 d="M19 12H5M12 19l-7-7 7-7"
@@ -208,6 +214,8 @@ const DeviceCards: React.FC<DeviceCardsProps> = ({
                 <button
                   className="device-settings"
                   onClick={() => handleDeviceSettings(device.id)}
+                  title="Device settings"
+                  aria-label="Device settings"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <circle
@@ -243,12 +251,7 @@ const DeviceCards: React.FC<DeviceCardsProps> = ({
                 <div className="device-status-row">
                   <div className="connection-status">
                     <div
-                      className="connection-dot"
-                      style={{
-                        backgroundColor: getConnectionStatusColor(
-                          device.connectionStatus,
-                        ),
-                      }}
+                      className={`connection-dot ${device.connectionStatus.toLowerCase()}`}
                     />
                     <span className="connection-text">
                       {device.connectionStatus}
@@ -264,6 +267,8 @@ const DeviceCards: React.FC<DeviceCardsProps> = ({
                   <button
                     className={`toggle-switch ${isOn ? "on" : "off"}`}
                     onClick={() => handleDeviceToggle(device)}
+                    title={`Turn ${isOn ? "off" : "on"} ${device.name}`}
+                    aria-label={`Turn ${isOn ? "off" : "on"} ${device.name}`}
                   >
                     <div className="toggle-slider">
                       <div className="toggle-thumb" />

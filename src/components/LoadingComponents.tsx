@@ -44,8 +44,7 @@ export function MatrixLoader({
         {Array.from({ length: 20 }, (_, i) => (
           <div
             key={i}
-            className="matrix-column"
-            style={{ animationDelay: `${i * 0.1}s` }}
+            className={`matrix-column delay-${i}`}
           >
             {Array.from({ length: 10 }, (_, j) => (
               <span key={j} className="matrix-char">
@@ -83,8 +82,7 @@ export function CyberpunkProgress({
       <div className={`cyberpunk-progress ${variant}`}>
         <div className="progress-track">
           <div
-            className="progress-fill"
-            style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+            className={`progress-fill progress-width-${Math.round(Math.min(100, Math.max(0, progress)))}`}
           >
             <div className="progress-glow"></div>
           </div>
@@ -113,13 +111,7 @@ export function NeuralNetworkLoader() {
         {Array.from({ length: 12 }, (_, i) => (
           <div
             key={i}
-            className="neural-node"
-            style={
-              {
-                "--delay": `${i * 0.1}s`,
-                "--angle": `${i * 30}deg`,
-              } as React.CSSProperties
-            }
+            className={`neural-node node-${i}`}
           ></div>
         ))}
       </div>
@@ -127,13 +119,7 @@ export function NeuralNetworkLoader() {
         {Array.from({ length: 6 }, (_, i) => (
           <div
             key={i}
-            className="neural-connection"
-            style={
-              {
-                "--delay": `${i * 0.2}s`,
-                "--rotation": `${i * 60}deg`,
-              } as React.CSSProperties
-            }
+            className={`neural-connection delay-${i} rotation-${i}`}
           ></div>
         ))}
       </div>
@@ -158,8 +144,7 @@ export function HolographicLoader({
         {Array.from({ length: 25 }, (_, i) => (
           <div
             key={i}
-            className="grid-cell"
-            style={{ "--delay": `${i * 0.05}s` } as React.CSSProperties}
+            className={`grid-cell delay-${i}`}
           ></div>
         ))}
       </div>
@@ -238,8 +223,7 @@ export function SystemBootLoader() {
         {bootSequence.map((line, index) => (
           <div
             key={index}
-            className="boot-line"
-            style={{ "--delay": `${index * 0.8}s` } as React.CSSProperties}
+            className={`boot-line delay-${index}`}
           >
             <span className="boot-prompt">&gt;</span>
             <span className="boot-text">{line}</span>

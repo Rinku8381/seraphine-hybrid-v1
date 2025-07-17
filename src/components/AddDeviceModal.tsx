@@ -101,7 +101,12 @@ export default function AddDeviceModal({
       <div className="modal-container">
         <div className="modal-header">
           <h2 className="modal-title">Tambah Perangkat Baru</h2>
-          <button className="close-btn" onClick={onClose}>
+          <button
+            className="close-btn"
+            onClick={onClose}
+            title="Tutup"
+            aria-label="Tutup"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M18 6L6 18M6 6L18 18"

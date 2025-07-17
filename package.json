@@ -17,6 +17,7 @@
     "@capacitor/local-notifications": "^5.0.0",
     "@capacitor/push-notifications": "^5.0.0",
     "@capacitor/splash-screen": "^5.0.0",
+    "critters": "^0.0.23",
     "framer-motion": "^12.23.6",
     "next": "^14.0.0",
     "react": "^18.3.1",
@@ -26,13 +27,17 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^5.7.8",
+    "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@types/react-is": "^18.3.0",
     "@types/styled-components": "^5.1.29",
+    "autoprefixer": "^10.4.21",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.0.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3"
   }
 }

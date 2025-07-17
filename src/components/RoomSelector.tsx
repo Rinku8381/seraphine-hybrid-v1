@@ -91,7 +91,12 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({
                 ))}
             </div>
           </div>
-          <button className="room-selector-close" onClick={onClose}>
+          <button
+            className="room-selector-close"
+            onClick={onClose}
+            title="Close"
+            aria-label="Close"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M18 6L6 18M6 6L18 18"
