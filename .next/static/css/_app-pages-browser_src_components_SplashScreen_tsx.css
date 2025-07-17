@@ -2,7 +2,7 @@
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/styles/splash.module.css ***!
   \************************************************************************************************************************************************************************************************************************************************************************/
 /* === Splash Container === */
-.splash_splash-container__zTHDE {
+.splash_splashContainer__JmAZP {
   display: grid;
   place-items: center;
   height: 100vh;
@@ -16,7 +16,7 @@
   box-sizing: border-box;
 }
 
-.splash_starlight-overlay__ZzfLV {
+.splash_starlightOverlay__psmrB {
   position: absolute;
   top: 0;
   left: 0;
@@ -42,7 +42,7 @@
   }
 }
 
-.splash_rising-particle__5dXV_ {
+.splash_risingParticle__Cx1ht {
   position: absolute;
   bottom: -10px;
   width: 2px;
@@ -54,7 +54,7 @@
   transform-origin: bottom center;
 }
 
-.splash_rising-particle__5dXV_:nth-child(odd) {
+.splash_risingParticle__Cx1ht:nth-child(odd) {
   animation-duration: 8s;
   width: 1px;
   background: linear-gradient(to top, rgba(255,0,255,0.3), transparent);
@@ -90,7 +90,7 @@
   transform-origin: center center;
 }
 
-.splash_firefly__ExdNc.splash_tiny__m8dFG {
+.splash_fireflyTiny__W73ww {
   width: 3px;
   height: 3px;
   filter: blur(4px);
@@ -98,23 +98,23 @@
 }
 
 /* Warna tambahan */
-.splash_firefly__ExdNc.splash_cyan__5r8af {
+.splash_fireflyCyan__blnxf {
   background: rgba(0, 255, 255, 0.8);
   box-shadow: 0 0 10px #0ff;
 }
-.splash_firefly__ExdNc.splash_magenta__hvYJn {
+.splash_fireflyMagenta__qCVf4 {
   background: rgba(255, 0, 255, 0.7);
   box-shadow: 0 0 10px #f0f;
 }
-.splash_firefly__ExdNc.splash_purple__VAe_N {
+.splash_fireflyPurple__c7qex {
   background: rgba(140, 0, 255, 0.6);
   box-shadow: 0 0 12px #a070ff;
 }
-.splash_firefly__ExdNc.splash_gold__tQH_8 {
+.splash_fireflyGold__Idykc {
   background: rgba(255, 215, 0, 0.7);
   box-shadow: 0 0 12px #ffd700;
 }
-.splash_firefly__ExdNc.splash_blue__1bdYy {
+.splash_fireflyBlue__M6Aj_ {
   background: rgba(0, 153, 255, 0.7);
   box-shadow: 0 0 10px #3399ff;
 }
@@ -134,7 +134,7 @@
   100% { opacity: 0.1; transform: scale(1); }
 }
 
-.splash_effects-layer__SLhNj {
+.splash_effectsLayer__IXPGM {
   position: fixed;
   top: 0;
   left: 0;
@@ -145,7 +145,7 @@
   overflow: hidden;
 }
 
-.splash_splash-container__zTHDE::before {
+.splash_splashContainer__JmAZP::before {
   content: '';
   background: url('/assets/splash/splash-bg.png') no-repeat center center;
   background-size: cover;
@@ -159,7 +159,7 @@
 }
 
 /* === Logo (Top-Right) === */
-.splash_splash-logo__Cxljz {
+.splash_splashLogo__9yYcy {
   position: absolute;
   top: 30px;
   right: 30px;
@@ -168,7 +168,7 @@
 }
 
 /* === Title === */
-.splash_splash-title__NIe34 {
+.splash_splashTitle__QEOdZ {
   font-size: 48px;
   font-weight: 800;
   color: #00f0ff;
@@ -178,13 +178,13 @@
 }
 
 /* === Avatar & Glow === */
-.splash_avatar-wrapper___0O6E {
+.splash_avatarWrapper__UMlTb {
   position: relative;
   z-index: 2;
   transform: translateY(100px);
 }
 
-.splash_avatar-glow__T1_C_ {
+.splash_avatarGlow__Zyps3 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -197,7 +197,7 @@
   z-index: 1;
 }
 
-.splash_splash-avatar__qilSD {
+.splash_splashAvatar__mwVbO {
   max-height: 520px;
   width: auto;
   z-index: 2;
@@ -460,7 +460,7 @@
 }
 
 /* === Text Area === */
-.splash_main-text__52tBs {
+.splash_mainText__0HLq5 {
   margin-top: 24px;
   font-size: 20px;
   color: #ffffff;
@@ -470,7 +470,7 @@
   transform: translateY(60px);
 }
 
-.splash_brand-text__uipaX {
+.splash_brandText__y01ka {
   color: #ff00cc;
   text-shadow: 0 0 6px #ff00cc, 0 0 14px #ff00cc;
   font-size: 24px;
@@ -480,14 +480,14 @@
 }
 
 /* === Dots Indicator === */
-.splash_content-section__E4uMa {
+.splash_contentSection__p8qMI {
   display: flex;
   gap: 10px;
   margin-top: 24px;
   z-index: 3;
 }
 
-.splash_section-item__49Mfi {
+.splash_sectionItem__3J7QC {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -497,43 +497,43 @@
 
 /* === Responsive === */
 @media (max-width: 768px) {
-  .splash_splash-title__NIe34 {
+  .splash_splashTitle__QEOdZ {
     font-size: 32px;
   }
 
-  .splash_splash-avatar__qilSD {
+  .splash_splashAvatar__mwVbO {
     max-height: 280px;
   }
 
-  .splash_avatar-glow__T1_C_ {
+  .splash_avatarGlow__Zyps3 {
     width: 300px;
     height: 300px;
   }
 
-  .splash_splash-logo__Cxljz {
+  .splash_splashLogo__9yYcy {
     width: 40px;
     top: 16px;
     right: 16px;
   }
 
-  .splash_main-text__52tBs, .splash_brand-text__uipaX {
+  .splash_mainText__0HLq5, .splash_brandText__y01ka {
     font-size: 18px;
   }
 }
 
 /* Layer Resetting */
-.splash_splash-container__zTHDE::before {
+.splash_splashContainer__JmAZP::before {
   z-index: 0; /* background image */
 }
 
 /* Z-index structure update */
-.splash_splash-container__zTHDE::before { z-index: 0; }        /* background */
-.splash_effects-layer__SLhNj { z-index: 2; }                   /* starlight, fireflies, rising fx */
-.splash_avatar-wrapper___0O6E,
-.splash_splash-logo__Cxljz,
-.splash_main-text__52tBs,
-.splash_brand-text__uipaX,
-.splash_loading-orb__7s6uh { z-index: 3; }                     /* content */
+.splash_splashContainer__JmAZP::before { z-index: 0; }        /* background */
+.splash_effectsLayer__IXPGM { z-index: 2; }                   /* starlight, fireflies, rising fx */
+.splash_avatarWrapper__UMlTb,
+.splash_splashLogo__9yYcy,
+.splash_mainText__0HLq5,
+.splash_brandText__y01ka,
+.splash_loadingOrb__jbDlh { z-index: 3; }                     /* content */
 
 /*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/styles/ParticleEffects.module.css ***!

@@ -1,10 +1,13 @@
 // SplashScreen.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from '@/styles/splash.module.css';
 import ParticleEffects from '@/components/ParticleEffects';
 import TermsModal from '@/components/TermsModal';
 
 export default function SplashScreen(): JSX.Element {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const router = useRouter();
   const [isLoaded, setIsLoaded] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -20,31 +23,35 @@ export default function SplashScreen(): JSX.Element {
 
   const handleAccept = () => {
     setShowTerms(false);
-    window.location.href = "/login"; // Redirect to login after accepting terms
+    setTimeout(() => {
+      router.push('/login');
+    }, 300);
   };
 
   const handleDecline = () => {
     setShowTerms(false);
-    // Optionally redirect to error/landing page
+    // Optionally, navigate to a landing or error page:
+    // router.push('/');
   };
 
   return (
     <main className={styles.splashMain}>
-      <audio autoPlay loop preload="auto">
+      <audio ref={audioRef} loop preload="auto">
         <source src="/assets/splash/splash-futuristic-synthwave.mp3" type="audio/mpeg" />
       </audio>
 
-      <div className={styles.splashContainer}>
-        <ParticleEffects />
+      {(!showTerms && isLoaded && showContent) && (
+        <div className={styles.splashContainer}>
+          <ParticleEffects />
 
-        <div className={styles.starlightOverlay} />
+          <div className={styles.starlightOverlay} />
 
-        {[...Array(10)].map((_, i) => (
-          <span
-            key={i}
-            className={`${styles.risingParticle} ${styles[`particle${i}`]}`}
-          />
-        ))}
+          {[...Array(10)].map((_, i) => (
+            <span
+              key={i}
+              className={styles.risingParticle}
+            />
+          ))}
 
         <img src="/assets/splash/logo.svg" alt="Seraphine Logo" className={`${styles.splashLogo} ${isLoaded ? styles.loaded : ''}`} />
 
@@ -59,20 +66,26 @@ export default function SplashScreen(): JSX.Element {
 
         <button
           className={`${styles.startButton} ${isLoaded ? styles.loaded : ''}`}
-          onClick={() => setShowTerms(true)}
+          onClick={() => {
+            audioRef.current?.play();
+            setShowTerms(true);
+          }}
         >
           Get Started
         </button>
 
-        {showTerms && (
-          <TermsModal
-            isVisible={showTerms}
-            onAccept={handleAccept}
-            onDecline={handleDecline}
-          />
-        )}
       </div>
-    </main>
+    )}
+
+    {showTerms && (
+      <TermsModal
+        isVisible={showTerms}
+        onAccept={handleAccept}
+        onDecline={handleDecline}
+      />
+    )}
+  </main>
+
   );
 }
 // SplashScreen.tsx

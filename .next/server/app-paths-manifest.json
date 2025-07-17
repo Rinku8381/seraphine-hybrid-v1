@@ -1,5 +1,5 @@
 {
-  "/splash/page": "app/splash/page.js",
   "/page": "app/page.js",
-  "/login/page": "app/login/page.js"
+  "/login/page": "app/login/page.js",
+  "/splash/page": "app/splash/page.js"
 }
