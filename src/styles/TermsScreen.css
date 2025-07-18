@@ -1,4 +1,4 @@
-.terms-modal {
+.termsModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.terms-content {
+.termsContent {
   background: #fff;
   color: #222;
   padding: 2rem 2.5rem;
@@ -22,25 +22,25 @@
   text-align: center;
 }
 
-.terms-title {
+.termsTitle {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1.25rem;
 }
 
-.terms-text {
+.termsText {
   font-size: 1rem;
   margin-bottom: 2rem;
   color: #333;
 }
 
-.terms-buttons {
+.termsButtons {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
 
-.accept-btn, .decline-btn {
+.acceptBtn, .declineBtn {
   padding: 0.75rem 2rem;
   border-radius: 8px;
   font-weight: 600;
@@ -49,12 +49,12 @@
   transition: background 0.2s, color 0.2s;
 }
 
-.accept-btn {
+.acceptBtn {
   background: #00f0ff;
   color: #010116;
 }
 
-.decline-btn {
+.declineBtn {
   background: #ff0000;
   color: #fff;
 }

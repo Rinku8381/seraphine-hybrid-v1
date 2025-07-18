@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import "./RoomSelector.css";
+import styles from "./RoomSelector.module.css"; // Use CSS module
 
 interface Room {
   id: string;
@@ -76,23 +76,23 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({
   };
 
   return (
-    <div className="room-selector-overlay">
-      <div className="room-selector-container">
-        <div className="room-selector-header">
-          <div className="app-title">
+    <div className={styles.roomSelectorOverlay}>
+      <div className={styles.roomSelectorContainer}>
+        <div className={styles.roomSelectorHeader}>
+          <div className={styles.appTitle}>
             <h1>Seraphine Hybrid V1</h1>
-            <div className="selected-rooms-indicator">
+            <div className={styles.selectedRoomsIndicator}>
               {roomList
                 .filter((room) => room.id === activeRoomId)
                 .map((room) => (
-                  <span key={room.id} className="selected-room-tag">
+                  <span key={room.id} className={styles.selectedRoomTag}>
                     {room.name}
                   </span>
                 ))}
             </div>
           </div>
           <button
-            className="room-selector-close"
+            className={styles.roomSelectorClose}
             onClick={onClose}
             title="Close"
             aria-label="Close"
@@ -108,38 +108,38 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({
           </button>
         </div>
 
-        <div className="room-selector-content">
-          <h2 className="section-title">Pilih Ruangan</h2>
+        <div className={styles.roomSelectorContent}>
+          <h2 className={styles.sectionTitle}>Pilih Ruangan</h2>
 
-          <div className="rooms-grid">
+          <div className={styles.roomsGrid}>
             {roomList.map((room) => (
               <div
                 key={room.id}
-                className={`room-card ${activeRoomId === room.id ? "selected" : ""}`}
+                className={`${styles.roomCard} ${activeRoomId === room.id ? styles.selected : ""}`}
                 onClick={() => handleRoomSelect(room.id)}
               >
-                <div className="room-card-inner">
-                  <div className="room-icon">{getRoomIcon(room.name)}</div>
-                  <div className="room-info">
-                    <h3 className="room-name">{room.name}</h3>
-                    <p className="room-device-count">
+                <div className={styles.roomCardInner}>
+                  <div className={styles.roomIcon}>{getRoomIcon(room.name)}</div>
+                  <div className={styles.roomInfo}>
+                    <h3 className={styles.roomName}>{room.name}</h3>
+                    <p className={styles.roomDeviceCount}>
                       {room.deviceCount}{" "}
                       {room.deviceCount === 1 ? "device" : "devices"}
                     </p>
                   </div>
-                  <div className="room-status-indicator">
-                    <div className="status-dot"></div>
+                  <div className={styles.roomStatusIndicator}>
+                    <div className={styles.statusDot}></div>
                   </div>
                 </div>
                 {activeRoomId === room.id && (
-                  <div className="selection-glow"></div>
+                  <div className={styles.selectionGlow}></div>
                 )}
               </div>
             ))}
 
-            <div className="add-room-card" onClick={handleAddNewRoom}>
-              <div className="add-room-inner">
-                <div className="add-room-icon">
+            <div className={styles.addRoomCard} onClick={handleAddNewRoom}>
+              <div className={styles.addRoomInner}>
+                <div className={styles.addRoomIcon}>
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M12 5v14M5 12h14"
@@ -149,7 +149,7 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({
                     />
                   </svg>
                 </div>
-                <div className="add-room-text">
+                <div className={styles.addRoomText}>
                   <h3>Tambah Ruangan Baru</h3>
                   <p>Buat ruangan baru</p>
                 </div>
@@ -158,13 +158,13 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({
           </div>
 
           {activeRoomId && (
-            <div className="selected-room-panel">
-              <div className="panel-header">
+            <div className={styles.selectedRoomPanel}>
+              <div className={styles.panelHeader}>
                 <h3>
                   {roomList.find((r) => r.id === activeRoomId)?.name} - Device
                   Management
                 </h3>
-                <button className="manage-devices-btn">
+                <button className={styles.manageDevicesBtn}>
                   Manage Devices
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path
@@ -177,15 +177,15 @@ const RoomSelector: React.FC<RoomSelectorProps> = ({
                   </svg>
                 </button>
               </div>
-              <div className="panel-content">
+              <div className={styles.panelContent}>
                 <p>
                   {roomList.find((r) => r.id === activeRoomId)?.deviceCount}{" "}
                   devices connected
                 </p>
-                <div className="quick-actions">
-                  <button className="quick-action-btn">Add Device</button>
-                  <button className="quick-action-btn">Room Settings</button>
-                  <button className="quick-action-btn">Automation</button>
+                <div className={styles.quickActions}>
+                  <button className={styles.quickActionBtn}>Add Device</button>
+                  <button className={styles.quickActionBtn}>Room Settings</button>
+                  <button className={styles.quickActionBtn}>Automation</button>
                 </div>
               </div>
             </div>

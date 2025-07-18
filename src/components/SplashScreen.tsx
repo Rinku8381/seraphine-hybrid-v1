@@ -37,7 +37,7 @@ export default function SplashScreen(): JSX.Element {
   return (
     <main className={styles.splashMain}>
       <audio ref={audioRef} loop preload="auto">
-        <source src="/assets/splash/splash-futuristic-synthwave.mp3" type="audio/mpeg" />
+        <source src="/assets/splash/SplashFuturisticSynthwave.mp3" type="audio/mpeg" />
       </audio>
 
       {(!showTerms && isLoaded && showContent) && (
@@ -53,38 +53,52 @@ export default function SplashScreen(): JSX.Element {
             />
           ))}
 
-        <img src="/assets/splash/logo.svg" alt="Seraphine Logo" className={`${styles.splashLogo} ${isLoaded ? styles.loaded : ''}`} />
+          {/* --- Avatar with gradient background --- */}
+          <div className={styles.avatarWrapper}>
+            <img
+              src="/assets/splash/GradientBackAvatar.png"
+              alt="Avatar Gradient Background"
+              className={styles.avatarGradient}
+            />
+            <img
+              src="/assets/splash/SeraphineAvatar.png"
+              alt="Seraphine Avatar"
+              className={styles.avatarImage}
+            />
+          </div>
+          {/* --- End Avatar --- */}
 
-        <h1 className={`${styles.splashTitle} ${isLoaded ? styles.loaded : ''}`}>
-          <span>Seraphine</span>
-          <span>Hybrid</span>
-        </h1>
+          <img src="/assets/splash/logo.svg" alt="Seraphine Logo" className={`${styles.splashLogo} ${isLoaded ? styles.loaded : ''}`} />
 
-        <p className={`${styles.splashSubtitle} ${isLoaded ? styles.loaded : ''}`}>
-          Welcome to the future of smart home automation
-        </p>
+          <h1 className={`${styles.splashTitle} ${isLoaded ? styles.loaded : ''}`}>
+            <span>Seraphine</span>
+            <span>Hybrid</span>
+          </h1>
 
-        <button
-          className={`${styles.startButton} ${isLoaded ? styles.loaded : ''}`}
-          onClick={() => {
-            audioRef.current?.play();
-            setShowTerms(true);
-          }}
-        >
-          Get Started
-        </button>
+          <p className={`${styles.splashSubtitle} ${isLoaded ? styles.loaded : ''}`}>
+            Welcome to the future of smart home automation
+          </p>
 
-      </div>
-    )}
+          <button
+            className={`${styles.startButton} ${isLoaded ? styles.loaded : ''}`}
+            onClick={() => {
+              audioRef.current?.play();
+              setShowTerms(true);
+            }}
+          >
+            Get Started
+          </button>
+        </div>
+      )}
 
-    {showTerms && (
-      <TermsModal
-        isVisible={showTerms}
-        onAccept={handleAccept}
-        onDecline={handleDecline}
-      />
-    )}
-  </main>
+      {showTerms && (
+        <TermsModal
+          isVisible={showTerms}
+          onAccept={handleAccept}
+          onDecline={handleDecline}
+        />
+      )}
+    </main>
 
   );
 }

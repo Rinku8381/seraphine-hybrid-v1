@@ -298,3 +298,3675 @@ Let me know if you want to use Next.js automatic metadata or manual `<head>` tag
 
 ---
 
+_**User**_
+
+Please help me, add an avatar image to SplashScreen.tsx and some additional gradient effects to splash.module.css, using seraphine-avatar.png as the avatar and gradient-back-avatar.png as the effect behind the avatar with the assets located in public/assets/splash
+
+---
+
+_**Assistant**_
+
+Certainly! Here’s how you can add an avatar image with a gradient effect behind it to your `SplashScreen.tsx`, and update your CSS for the gradient effect.
+
+---
+
+````tsx
+// ...existing code...
+{(!showTerms && isLoaded && showContent) && (
+  <div className={styles.splashContainer}>
+    <ParticleEffects />
+
+    <div className={styles.starlightOverlay} />
+
+    {[...Array(10)].map((_, i) => (
+      <span
+        key={i}
+        className={styles.risingParticle}
+      />
+    ))}
+
+    {/* --- Avatar with gradient background --- */}
+    <div className={styles.avatarWrapper}>
+      <img
+        src="/assets/splash/gradient-back-avatar.png"
+        alt="Avatar Gradient Background"
+        className={styles.avatarGradient}
+      />
+      <img
+        src="/assets/splash/seraphine-avatar.png"
+        alt="Seraphine Avatar"
+        className={styles.avatarImage}
+      />
+    </div>
+    {/* --- End Avatar --- */}
+
+    <img src="/assets/splash/logo.svg" alt="Seraphine Logo" className={`${styles.splashLogo} ${isLoaded ? styles.loaded : ''}`} />
+
+    <h1 className={`${styles.splashTitle} ${isLoaded ? styles.loaded : ''}`}>
+      <span>Seraphine</span>
+      <span>Hybrid</span>
+    </h1>
+
+    <p className={`${styles.splashSubtitle} ${isLoaded ? styles.loaded : ''}`}>
+      Welcome to the future of smart home automation
+    </p>
+
+    <button
+      className={`${styles.startButton} ${isLoaded ? styles.loaded : ''}`}
+      onClick={() => {
+        audioRef.current?.play();
+        setShowTerms(true);
+      }}
+    >
+      Get Started
+    </button>
+  </div>
+)}
+// ...existing code...
+````
+
+---
+
+````css
+/* ...existing code... */
+
+.avatarWrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarGradient {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.85;
+  filter: blur(2px) brightness(1.2);
+  /* Optional: Add a soft drop shadow for more glow */
+  box-shadow: 0 0 40px 10px rgba(120, 80, 255, 0.4);
+}
+
+.avatarImage {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  z-index: 2;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.7);
+  box-shadow: 0 4px 32px 0 rgba(80, 40, 180, 0.18);
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+}
+
+/* Optional: Add extra gradient effects to the splash background */
+.splashMain {
+  /* ...existing styles... */
+  background: linear-gradient(120deg, #1a1a2e 0%, #282c34 60%, #6a82fb 100%);
+  min-height: 100vh;
+  /* ...existing styles... */
+}
+
+/* ...existing code... */
+````
+
+---
+
+**Summary of changes:**
+- Added an avatar section with a gradient background behind the avatar image.
+- Enhanced the splash background with a gradient.
+- All images are referenced from `/assets/splash/`.
+
+Let me know if you want to further tweak the styles!
+
+---
+
+_**User**_
+
+Please help me check all the files in the src folder. I want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+I'm sorry, I can't answer that question with what I currently know about your workspace.
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Certainly! Here’s how you would update your `LoginScreen.tsx` to use camelCase class names.  
+**You must also update your corresponding `login.module.css` file to use camelCase class names.**
+
+---
+
+````tsx
+// ...existing code...
+  return (
+    <div className={styles.loginContainer}>
+      <div className={styles.loginContent}>
+        <h2 className={styles.loginTitle}>Welcome to Seraphine</h2>
+
+        <div className={styles.loginForm}>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Username</label>
+            <input
+              className={styles.formInput}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter username"
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Password</label>
+            <input
+              className={styles.formInput}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter password"
+            />
+          </div>
+
+          <button className={styles.loginButton} onClick={handleLogin}>
+            Log In
+          </button>
+
+          {error && <p className={styles.error}>{error}</p>}
+        </div>
+      </div>
+    </div>
+  );
+// ...existing code...
+````
+
+---
+
+**Now, update your `login.module.css` file:**  
+Change all dash-case class names to camelCase. For example:
+
+````css
+/* Before */
+.login-container { ... }
+.login-content { ... }
+.login-title { ... }
+.login-form { ... }
+.form-group { ... }
+.form-label { ... }
+.form-input { ... }
+.login-button { ... }
+.error { ... }
+
+/* After */
+.loginContainer { ... }
+.loginContent { ... }
+.loginTitle { ... }
+.loginForm { ... }
+.formGroup { ... }
+.formLabel { ... }
+.formInput { ... }
+.loginButton { ... }
+.error { ... }
+````
+
+---
+
+**Repeat this process for all other `.module.css` and `.tsx` files in your project:**
+- Change dash-case class names in CSS to camelCase.
+- Update all usages in your React components to match.
+
+Let me know if you want me to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Certainly! Here’s how you should update your `.module.css` and `.tsx` files to use camelCase class names instead of dash-case.
+
+---
+
+### 1. Example: Change in CSS (`login.module.css`)
+
+**Before:**
+```css
+.login-container { ... }
+.login-content { ... }
+.login-title { ... }
+.login-form { ... }
+.form-group { ... }
+.form-label { ... }
+.form-input { ... }
+.login-button { ... }
+.error { ... }
+```
+
+**After:**
+```css
+.loginContainer { ... }
+.loginContent { ... }
+.loginTitle { ... }
+.loginForm { ... }
+.formGroup { ... }
+.formLabel { ... }
+.formInput { ... }
+.loginButton { ... }
+.error { ... }
+```
+
+---
+
+### 2. Example: Change in TSX (`LoginScreen.tsx`)
+
+**Before:**
+```tsx
+<div className={styles.login-container}>
+  <div className={styles.login-content}>
+    <h2 className={styles.login-title}>Welcome</h2>
+    ...
+  </div>
+</div>
+```
+
+**After:**
+```tsx
+<div className={styles.loginContainer}>
+  <div className={styles.loginContent}>
+    <h2 className={styles.loginTitle}>Welcome</h2>
+    ...
+  </div>
+</div>
+```
+
+---
+
+### 3. Repeat for All `.module.css` and `.tsx` Files
+
+- In every `.module.css` file, change all dash-case class names to camelCase.
+- In every `.tsx` file that imports those CSS modules, update all usages to camelCase.
+
+---
+
+**Note:**  
+Your `globals.css` does **not** need to be changed, as it is a global stylesheet and not a CSS module. Only update files like `*.module.css` and their usages in React components.
+
+---
+
+If you want, paste the contents of another `.module.css` or `.tsx` file and I’ll convert it for you!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `welcome.module.css` with all dash-case class names converted to camelCase.  
+**You must also update all usages in your TSX files to match these new names.**
+
+````css
+/* === Splash Container === */
+.splashContainer {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
+  background: #010116;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  font-family: 'Orbitron', sans-serif;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+.starlightOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+              radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 80%),
+              radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 90%);
+  animation: starlightPulse 6s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+@keyframes starlightPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1.03);
+  }
+}
+
+.risingParticle {
+  position: absolute;
+  bottom: -10px;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to top, rgba(0,255,255,0.4), transparent);
+  opacity: 0.5;
+  animation: rise 8s linear infinite;
+  z-index: 1;
+  transform-origin: bottom center;
+}
+
+.risingParticle:nth-child(odd) {
+  animation-duration: 8s;
+  width: 1px;
+  background: linear-gradient(to top, rgba(255,0,255,0.3), transparent);
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-150vh) scaleX(1.2);
+    opacity: 0;
+  }
+}
+
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.7);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
+  animation: float 12s infinite ease-in-out, flicker 2.5s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: center center;
+}
+
+.firefly.tiny {
+  width: 3px;
+  height: 3px;
+  filter: blur(4px);
+  opacity: 0.3;
+}
+
+/* Warna tambahan */
+.firefly.cyan {
+  background: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px #0ff;
+}
+.firefly.magenta {
+  background: rgba(255, 0, 255, 0.7);
+  box-shadow: 0 0 10px #f0f;
+}
+.firefly.purple {
+  background: rgba(140, 0, 255, 0.6);
+  box-shadow: 0 0 12px #a070ff;
+}
+.firefly.gold {
+  background: rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 12px #ffd700;
+}
+.firefly.blue {
+  background: rgba(0, 153, 255, 0.7);
+  box-shadow: 0 0 10px #3399ff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  30% { transform: translateY(-40px) translateX(20px); }
+  70% { transform: translateY(-20px) translateX(-10px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+@keyframes flicker {
+  0%   { opacity: 0.1; transform: scale(1); }
+  25%  { opacity: 0.6; transform: scale(1.2); }
+  50%  { opacity: 1; transform: scale(0.8); }
+  75%  { opacity: 0.4; transform: scale(1.1); }
+  100% { opacity: 0.1; transform: scale(1); }
+}
+
+.effectsLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.splashContainer::before {
+  content: '';
+  background: url('/assets/splash/splash-bg.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* === Logo (Top-Right) === */
+.splashLogo {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 80px;
+  z-index: 4;
+}
+
+/* === Title === */
+.splashTitle {
+  font-size: 48px;
+  font-weight: 800;
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 30px #00f0ff;
+  margin-bottom: 20px;
+  z-index: 3;
+}
+
+/* === Avatar & Glow === */
+.avatarWrapper {
+  position: relative;
+  z-index: 2;
+  transform: translateY(100px);
+}
+
+.avatarGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0,255,255,0.6) 0%, transparent 80%);
+  filter: blur(100px);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.splashAvatar {
+  max-height: 520px;
+  width: auto;
+  z-index: 2;
+}
+
+/* === Terms Screen === */
+.termsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.termsContent {
+  background: #010116;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.termsTitle {
+  color: #00f0ff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.termsText {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.termsButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.acceptButton, .declineButton {
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.acceptButton {
+  background: #00f0ff;
+  color: #010116;
+}
+
+.declineButton {
+  background: #ff0000;
+  color: #fff;
+}
+
+/* === Login Screen === */
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.loginContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.loginTitle {
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  padding: 0.8rem;
+  border: 1px solid #00f0ff;
+  border-radius: 8px;
+  background: #010116;
+  color: #fff;
+}
+
+.loginButton {
+  padding: 0.8rem;
+  background: #00f0ff;
+  border: none;
+  border-radius: 8px;
+  color: #010116;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.error {
+  color: #ff0000;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* === Onboarding Screens === */
+.onboardingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.onboardingContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.onboardingTitle {
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.onboardingText {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.onboardingProgress {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.progressStep {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressNumber {
+  color: #00f0ff;
+  font-weight: 600;
+}
+
+.onboardingButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.nextButton, .backButton, .skipButton {
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nextButton {
+  background: #00f0ff;
+  color: #010116;
+}
+
+.backButton {
+  background: rgba(0, 255, 255, 0.2);
+  color: #00f0ff;
+}
+
+.skipButton {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+}
+
+/* === Welcome Complete === */
+.welcomeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.welcomeContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  text-align: center;
+}
+
+.welcomeTitle {
+  color: #00f0ff;
+  margin-bottom: 1.5rem;
+}
+
+.welcomeText {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.startButton {
+  padding: 1rem 2rem;
+  background: #00f0ff;
+  border: none;
+  border-radius: 8px;
+  color: #010116;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* === Text Area === */
+.mainText {
+  margin-top: 24px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
+  z-index: 3;
+  transform: translateY(60px);
+}
+
+.brandText {
+  color: #ff00cc;
+  text-shadow: 0 0 6px #ff00cc, 0 0 14px #ff00cc;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  transform: translateY(60px);
+}
+
+/* === Dots Indicator === */
+.contentSection {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  z-index: 3;
+}
+
+.sectionItem {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff91da;
+  box-shadow: 0 0 6px #ff91da;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .splashTitle {
+    font-size: 32px;
+  }
+
+  .splashAvatar {
+    max-height: 280px;
+  }
+
+  .avatarGlow {
+    width: 300px;
+    height: 300px;
+  }
+
+  .splashLogo {
+    width: 40px;
+    top: 16px;
+    right: 16px;
+  }
+
+  .mainText, .brandText {
+    font-size: 18px;
+  }
+}
+
+/* Layer Resetting */
+.splashContainer::before {
+  z-index: 0; /* background image */
+}
+
+/* Z-index structure update */
+.splashContainer::before { z-index: 0; }        /* background */
+.effectsLayer { z-index: 2; }                   /* starlight, fireflies, rising fx */
+.avatarWrapper,
+.splashLogo,
+.mainText,
+.brandText,
+.loadingOrb { z-index: 3; }                     /* content */
+````
+
+**Now update your TSX files to use these camelCase class names.**  
+For example, change `styles['splash-container']` or `styles.splash-container` to `styles.splashContainer`, and so on.
+
+Let me know if you want me to convert another file!
+
+---
+
+_**User**_
+
+Please fix Code Citations
+
+---
+
+_**Assistant**_
+
+Here’s a cleaned-up and consistent format for your **Code Citations** section.  
+I’ve removed duplicates and used a single, clear citation style for the referenced CSS file.
+
+````markdown
+# Code Citations
+
+## License: unknown
+
+[popup-image.css (GitHub)](https://github.com/DaniyarOtynshin/mesto-react/blob/4c895d8b106e4d1da335ee770f8385f75a7a5fa3/src/blocks/popup-image/popup-image.css)
+
+```css
+.fixed {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: /* ... */;
+}
+```
+````
+
+- Only one citation per file.
+- Use a code block for the relevant CSS snippet.
+- Use a Markdown link for the source.
+
+Let me know if you want to cite more files or need a different format!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `TermsScreen.css` with all dash-case class names converted to camelCase.  
+**You must also update all usages in your TSX files to match these new names.**
+
+````css
+.termsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.termsContent {
+  background: #fff;
+  color: #222;
+  padding: 2rem 2.5rem;
+  border-radius: 1rem;
+  max-width: 480px;
+  width: 90vw;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.termsTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+}
+
+.termsText {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.termsButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.acceptBtn, .declineBtn {
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.acceptBtn {
+  background: #00f0ff;
+  color: #010116;
+}
+
+.declineBtn {
+  background: #ff0000;
+  color: #fff;
+}
+````
+
+**Update your TSX files accordingly:**  
+- Change `styles['terms-modal']` or `styles.terms-modal` to `styles.termsModal`
+- Change `styles['terms-content']` or `styles.terms-content` to `styles.termsContent`
+- And so on for all class names above.
+
+Let me know if you want me to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `terms.module.css` with all dash-case class names converted to camelCase.  
+**You must also update all usages in your TSX files to match these new names.**
+
+````css
+/* === Splash Container === */
+.splashContainer {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
+  background: #010116;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  font-family: 'Orbitron', sans-serif;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+.starlightOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+              radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 80%),
+              radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 90%);
+  animation: starlightPulse 6s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+@keyframes starlightPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1.03);
+  }
+}
+
+.risingParticle {
+  position: absolute;
+  bottom: -10px;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to top, rgba(0,255,255,0.4), transparent);
+  opacity: 0.5;
+  animation: rise 8s linear infinite;
+  z-index: 1;
+  transform-origin: bottom center;
+}
+
+.risingParticle:nth-child(odd) {
+  animation-duration: 8s;
+  width: 1px;
+  background: linear-gradient(to top, rgba(255,0,255,0.3), transparent);
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-150vh) scaleX(1.2);
+    opacity: 0;
+  }
+}
+
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.7);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
+  animation: float 12s infinite ease-in-out, flicker 2.5s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: center center;
+}
+
+.firefly.tiny {
+  width: 3px;
+  height: 3px;
+  filter: blur(4px);
+  opacity: 0.3;
+}
+
+/* Warna tambahan */
+.firefly.cyan {
+  background: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px #0ff;
+}
+.firefly.magenta {
+  background: rgba(255, 0, 255, 0.7);
+  box-shadow: 0 0 10px #f0f;
+}
+.firefly.purple {
+  background: rgba(140, 0, 255, 0.6);
+  box-shadow: 0 0 12px #a070ff;
+}
+.firefly.gold {
+  background: rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 12px #ffd700;
+}
+.firefly.blue {
+  background: rgba(0, 153, 255, 0.7);
+  box-shadow: 0 0 10px #3399ff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  30% { transform: translateY(-40px) translateX(20px); }
+  70% { transform: translateY(-20px) translateX(-10px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+@keyframes flicker {
+  0%   { opacity: 0.1; transform: scale(1); }
+  25%  { opacity: 0.6; transform: scale(1.2); }
+  50%  { opacity: 1; transform: scale(0.8); }
+  75%  { opacity: 0.4; transform: scale(1.1); }
+  100% { opacity: 0.1; transform: scale(1); }
+}
+
+.effectsLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.splashContainer::before {
+  content: '';
+  background: url('/assets/splash/splash-bg.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* === Logo (Top-Right) === */
+.splashLogo {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 80px;
+  z-index: 4;
+}
+
+/* === Title === */
+.splashTitle {
+  font-size: 48px;
+  font-weight: 800;
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 30px #00f0ff;
+  margin-bottom: 20px;
+  z-index: 3;
+}
+
+/* === Avatar & Glow === */
+.avatarWrapper {
+  position: relative;
+  z-index: 2;
+  transform: translateY(100px);
+}
+
+.avatarGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0,255,255,0.6) 0%, transparent 80%);
+  filter: blur(100px);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.splashAvatar {
+  max-height: 520px;
+  width: auto;
+  z-index: 2;
+}
+
+/* === Terms Screen === */
+.termsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.termsContent {
+  background: #010116;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.termsTitle {
+  color: #00f0ff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.termsText {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.termsButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.acceptButton, .declineButton {
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.acceptButton {
+  background: #00f0ff;
+  color: #010116;
+}
+
+.declineButton {
+  background: #ff0000;
+  color: #fff;
+}
+
+/* === Login Screen === */
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.loginContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.loginTitle {
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  padding: 0.8rem;
+  border: 1px solid #00f0ff;
+  border-radius: 8px;
+  background: #010116;
+  color: #fff;
+}
+
+.loginButton {
+  padding: 0.8rem;
+  background: #00f0ff;
+  border: none;
+  border-radius: 8px;
+  color: #010116;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.error {
+  color: #ff0000;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* === Onboarding Screens === */
+.onboardingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.onboardingContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.onboardingTitle {
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.onboardingText {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.onboardingProgress {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.progressStep {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressNumber {
+  color: #00f0ff;
+  font-weight: 600;
+}
+
+.onboardingButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.nextButton, .backButton, .skipButton {
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nextButton {
+  background: #00f0ff;
+  color: #010116;
+}
+
+.backButton {
+  background: rgba(0, 255, 255, 0.2);
+  color: #00f0ff;
+}
+
+.skipButton {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+}
+
+/* === Welcome Complete === */
+.welcomeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.welcomeContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  text-align: center;
+}
+
+.welcomeTitle {
+  color: #00f0ff;
+  margin-bottom: 1.5rem;
+}
+
+.welcomeText {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.startButton {
+  padding: 1rem 2rem;
+  background: #00f0ff;
+  border: none;
+  border-radius: 8px;
+  color: #010116;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* === Text Area === */
+.mainText {
+  margin-top: 24px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
+  z-index: 3;
+  transform: translateY(60px);
+}
+
+.brandText {
+  color: #ff00cc;
+  text-shadow: 0 0 6px #ff00cc, 0 0 14px #ff00cc;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  transform: translateY(60px);
+}
+
+/* === Dots Indicator === */
+.contentSection {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  z-index: 3;
+}
+
+.sectionItem {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff91da;
+  box-shadow: 0 0 6px #ff91da;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .splashTitle {
+    font-size: 32px;
+  }
+
+  .splashAvatar {
+    max-height: 280px;
+  }
+
+  .avatarGlow {
+    width: 300px;
+    height: 300px;
+  }
+
+  .splashLogo {
+    width: 40px;
+    top: 16px;
+    right: 16px;
+  }
+
+  .mainText, .brandText {
+    font-size: 18px;
+  }
+}
+
+/* Layer Resetting */
+.splashContainer::before {
+  z-index: 0; /* background image */
+}
+
+/* Z-index structure update */
+.splashContainer::before { z-index: 0; }        /* background */
+.effectsLayer { z-index: 2; }                   /* starlight, fireflies, rising fx */
+.avatarWrapper,
+.splashLogo,
+.mainText,
+.brandText,
+.loadingOrb { z-index: 3; }                     /* content */
+````
+
+**Now update your TSX files to use these camelCase class names.**  
+For example, change `styles['splash-container']` or `styles.splash-container` to `styles.splashContainer`, and so on.
+
+Let me know if you want me to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `ParticleEffects.module.css` with all dash-case class names converted to camelCase.  
+**You must also update all usages in your TSX files to match these new names.**
+
+````css
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  background-color: #00f0ff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: drift linear infinite;
+}
+
+.particle.highIntensity {
+  width: 3px;
+  height: 3px;
+  background-color: #ff00cc;
+  filter: blur(1px);
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(-50%, -50%) translate(calc(var(--x) * 1vw), calc(var(--y) * 1vh)) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(calc(var(--x) * 1vw), calc(var(--y) * 1vh)) scale(0);
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 1s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+````
+
+**Update your TSX files accordingly:**  
+- Change `styles['particle-effects']` or `styles.particle-effects` to `styles.particleEffects` (if it existed).
+- Change `styles['high-intensity']` or `styles.high-intensity` to `styles.highIntensity`, etc.
+
+Let me know if you want me to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `onboarding.module.css` with all dash-case class names converted to camelCase.  
+**You must also update all usages in your TSX files to match these new names.**
+
+````css
+.onboardingStep1 {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.onboardingStep1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 119, 198, 0.2) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.onboardingContainer {
+  max-width: 400px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Progress Section */
+.progressSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.progressDots {
+  display: flex;
+  gap: 12px;
+}
+
+.progressDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.progressDot.active {
+  background: linear-gradient(135deg, #00d4ff, #ff006e);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.progressText {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Avatar Section */
+.avatarSection {
+  margin-bottom: 40px;
+}
+
+.avatarContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarGlow {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff, #ff006e);
+  opacity: 0.3;
+  animation: avatarPulse 2s ease-in-out infinite;
+  filter: blur(10px);
+}
+
+.avatarCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 255, 0.2),
+    rgba(255, 0, 110, 0.2)
+  );
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  animation: avatarRotate 20s linear infinite;
+}
+
+.avatarImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff, #ff006e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes avatarPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes avatarRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Content Section */
+.contentSection {
+  margin-bottom: 40px;
+}
+
+.welcomeTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+  line-height: 1.3;
+  background: linear-gradient(135deg, #ffffff, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.welcomeSubtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Button Section */
+.buttonSection {
+  width: 100%;
+}
+
+.setupButton {
+  width: 100%;
+  background: linear-gradient(135deg, #00d4ff, #ff006e);
+  border: none;
+  border-radius: 16px;
+  padding: 18px 24px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.setupButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.setupButton:hover::before {
+  left: 100%;
+}
+
+.setupButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+.setupButton:active {
+  transform: translateY(0);
+}
+
+.buttonText {
+  flex: 1;
+  text-align: center;
+}
+
+.buttonArrow {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.setupButton:hover .buttonArrow {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .onboardingStep1 {
+    padding: 15px;
+  }
+
+  .onboardingContainer {
+    padding: 30px 20px;
+  }
+
+  .welcomeTitle {
+    font-size: 24px;
+  }
+
+  .welcomeSubtitle {
+    font-size: 14px;
+  }
+
+  .avatarCircle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatarGlow {
+    width: 120px;
+    height: 120px;
+  }
+
+  .avatarImage {
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .onboardingContainer {
+    padding: 25px 15px;
+  }
+
+  .welcomeTitle {
+    font-size: 22px;
+  }
+
+  .avatarCircle {
+    width: 90px;
+    height: 90px;
+  }
+
+  .avatarGlow {
+    width: 110px;
+    height: 110px;
+  }
+
+  .avatarImage {
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+  }
+}
+````
+
+**Now update your TSX files to use these camelCase class names.**  
+For example, change `styles['onboarding-step1']` or `styles.onboarding-step1` to `styles.onboardingStep1`, and so on.
+
+Let me know if you want me to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `login.module.css` with all dash-case class names converted to camelCase.  
+**You must also update all usages in your TSX files to match these new names.**
+
+````css
+/* === Splash Container === */
+.splashContainer {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100%;
+  background: #010116;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  font-family: 'Orbitron', sans-serif;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.formInput {
+  padding-left: 40px; /* space untuk icon di kiri */
+}
+
+.starlightOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+              radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 80%),
+              radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 90%);
+  animation: starlightPulse 6s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+@keyframes starlightPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1.03);
+  }
+}
+
+.risingParticle {
+  position: absolute;
+  bottom: -10px;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to top, rgba(0,255,255,0.4), transparent);
+  opacity: 0.5;
+  animation: rise 8s linear infinite;
+  z-index: 1;
+  transform-origin: bottom center;
+}
+
+.risingParticle:nth-child(odd) {
+  animation-duration: 8s;
+  width: 1px;
+  background: linear-gradient(to top, rgba(255,0,255,0.3), transparent);
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-150vh) scaleX(1.2);
+    opacity: 0;
+  }
+}
+
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.7);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
+  animation: float 12s infinite ease-in-out, flicker 2.5s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: center center;
+}
+
+.firefly.tiny {
+  width: 3px;
+  height: 3px;
+  filter: blur(4px);
+  opacity: 0.3;
+}
+
+/* Warna tambahan */
+.firefly.cyan {
+  background: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px #0ff;
+}
+.firefly.magenta {
+  background: rgba(255, 0, 255, 0.7);
+  box-shadow: 0 0 10px #f0f;
+}
+.firefly.purple {
+  background: rgba(140, 0, 255, 0.6);
+  box-shadow: 0 0 12px #a070ff;
+}
+.firefly.gold {
+  background: rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 12px #ffd700;
+}
+.firefly.blue {
+  background: rgba(0, 153, 255, 0.7);
+  box-shadow: 0 0 10px #3399ff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  30% { transform: translateY(-40px) translateX(20px); }
+  70% { transform: translateY(-20px) translateX(-10px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+@keyframes flicker {
+  0%   { opacity: 0.1; transform: scale(1); }
+  25%  { opacity: 0.6; transform: scale(1.2); }
+  50%  { opacity: 1; transform: scale(0.8); }
+  75%  { opacity: 0.4; transform: scale(1.1); }
+  100% { opacity: 0.1; transform: scale(1); }
+}
+
+.effectsLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.splashContainer::before {
+  content: '';
+  background: url('/assets/splash/splash-bg.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* === Logo (Top-Right) === */
+.splashLogo {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 80px;
+  z-index: 4;
+}
+
+/* === Title === */
+.splashTitle {
+  font-size: 48px;
+  font-weight: 800;
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 30px #00f0ff;
+  margin-bottom: 20px;
+  z-index: 3;
+}
+
+/* === Avatar & Glow === */
+.avatarWrapper {
+  position: relative;
+  z-index: 2;
+  transform: translateY(100px);
+}
+
+.avatarGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0,255,255,0.6) 0%, transparent 80%);
+  filter: blur(100px);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.splashAvatar {
+  max-height: 520px;
+  width: auto;
+  z-index: 2;
+}
+
+/* === Terms Screen === */
+.termsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.termsContent {
+  background: #010116;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.termsTitle {
+  color: #00f0ff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.termsText {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.termsButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.acceptButton, .declineButton {
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.acceptButton {
+  background: #00f0ff;
+  color: #010116;
+}
+
+.declineButton {
+  background: #ff0000;
+  color: #fff;
+}
+
+/* === Login Screen === */
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.loginContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.loginTitle {
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  padding: 0.8rem;
+  border: 1px solid #00f0ff;
+  border-radius: 8px;
+  background: #010116;
+  color: #fff;
+}
+
+.loginButton {
+  padding: 0.8rem;
+  background: #00f0ff;
+  border: none;
+  border-radius: 8px;
+  color: #010116;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.error {
+  color: #ff0000;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* === Onboarding Screens === */
+.onboardingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.onboardingContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.onboardingTitle {
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.onboardingText {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.onboardingProgress {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.progressStep {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressNumber {
+  color: #00f0ff;
+  font-weight: 600;
+}
+
+.onboardingButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.nextButton, .backButton, .skipButton {
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nextButton {
+  background: #00f0ff;
+  color: #010116;
+}
+
+.backButton {
+  background: rgba(0, 255, 255, 0.2);
+  color: #00f0ff;
+}
+
+.skipButton {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+}
+
+/* === Welcome Complete === */
+.welcomeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #010116;
+}
+
+.welcomeContent {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  text-align: center;
+}
+
+.welcomeTitle {
+  color: #00f0ff;
+  margin-bottom: 1.5rem;
+}
+
+.welcomeText {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.startButton {
+  padding: 1rem 2rem;
+  background: #00f0ff;
+  border: none;
+  border-radius: 8px;
+  color: #010116;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* === Text Area === */
+.mainText {
+  margin-top: 24px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
+  z-index: 3;
+  transform: translateY(60px);
+}
+
+.brandText {
+  color: #ff00cc;
+  text-shadow: 0 0 6px #ff00cc, 0 0 14px #ff00cc;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  transform: translateY(60px);
+}
+
+/* === Dots Indicator === */
+.contentSection {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  z-index: 3;
+}
+
+.sectionItem {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff91da;
+  box-shadow: 0 0 6px #ff91da;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .splashTitle {
+    font-size: 32px;
+  }
+
+  .splashAvatar {
+    max-height: 280px;
+  }
+
+  .avatarGlow {
+    width: 300px;
+    height: 300px;
+  }
+
+  .splashLogo {
+    width: 40px;
+    top: 16px;
+    right: 16px;
+  }
+
+  .mainText, .brandText {
+    font-size: 18px;
+  }
+}
+
+/* Layer Resetting */
+.splashContainer::before {
+  z-index: 0; /* background image */
+}
+
+/* Z-index structure update */
+.splashContainer::before { z-index: 0; }        /* background */
+.effectsLayer { z-index: 2; }                   /* starlight, fireflies, rising fx */
+.avatarWrapper,
+.splashLogo,
+.mainText,
+.brandText,
+.loadingOrb { z-index: 3; }                     /* content */
+````
+
+**Now update your TSX files to use these camelCase class names.**  
+For example, change `styles['splash-container']` or `styles.splash-container` to `styles.splashContainer`, and so on.
+
+Let me know if you want me to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Your `globals.css` is a **global stylesheet**, not a CSS module, so you do **not** need to change class names to camelCase here.  
+Global CSS (including Tailwind layers) should always use dash-case (kebab-case) for class names, as that is the convention and required for Tailwind and global selectors.
+
+**Only change class names to camelCase in `.module.css` files and their usages in `.tsx` files.**  
+Leave `globals.css` as it is.
+
+**Summary:**  
+- No changes needed for `globals.css`.
+- Continue using dash-case for global styles and Tailwind layers.
+- Use camelCase only for CSS modules and their React usages.
+
+Let me know if you want to convert another `.module.css` or `.tsx` file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `WelcomeComplete.tsx` updated to use camelCase class names, assuming your CSS module file (`splash.module.css`) has also been updated to camelCase:
+
+````tsx
+"use client";
+
+import React from 'react';
+import styles from '../styles/splash.module.css';
+
+interface WelcomeCompleteProps {
+  onToDashboard: () => void;
+}
+
+export default function WelcomeComplete({ onToDashboard }: WelcomeCompleteProps) {
+  return (
+    <div className={styles.welcomeContainer}>
+      <div className={styles.welcomeContent}>
+        <h2 className={styles.welcomeTitle}>Welcome to Seraphine!</h2>
+        <p className={styles.welcomeText}>
+          Your setup is complete. Let's get started!
+        </p>
+        <button className={styles.startButton} onClick={onToDashboard}>
+          Start Exploring
+        </button>
+      </div>
+    </div>
+  );
+}
+````
+
+**What was changed:**  
+- All class names are now camelCase (e.g., `welcomeContainer`, `welcomeContent`, `welcomeTitle`, `welcomeText`, `startButton`).
+
+**Reminder:**  
+Make sure your `splash.module.css` file uses the same camelCase class names.
+
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `TermsModal.tsx` updated to use camelCase class names.  
+**You must also update your CSS file to use these camelCase class names.**
+
+````tsx
+"use client";
+
+import "../styles/TermsScreen.css";
+
+interface TermsScreenProps {
+  onAccept: () => void;
+  onDecline: () => void;
+  isVisible: boolean;
+}
+
+export default function TermsScreen({ onAccept, onDecline, isVisible }: TermsScreenProps) {
+  return (
+    <div className={`termsScreen ${isVisible ? 'visible' : ''}`} tabIndex={-1} role="dialog" aria-modal="true">
+      <div className="termsContainer">
+        <div className="termsHeader">
+          <h1 className="termsTitle">Terms & Conditions</h1>
+          <div className="ageRestriction">
+            <span className="ageBadge">18+</span>
+            <p className="ageText">This application is restricted to users 18 years and older</p>
+          </div>
+        </div>
+
+        <div className="termsContent">
+          {/* Sections truncated for brevity */}
+        </div>
+
+        <div className="termsActions">
+          <button className="declineButton" onClick={onDecline}>Decline</button>
+          <button className="acceptButton" onClick={onAccept}>Accept & Continue</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+````
+
+**Update your CSS accordingly:**  
+- `.terms-screen` → `.termsScreen`
+- `.terms-container` → `.termsContainer`
+- `.terms-header` → `.termsHeader`
+- `.terms-title` → `.termsTitle`
+- `.age-restriction` → `.ageRestriction`
+- `.age-badge` → `.ageBadge`
+- `.age-text` → `.ageText`
+- `.terms-content` → `.termsContent`
+- `.terms-actions` → `.termsActions`
+- `.decline-button` → `.declineButton`
+- `.accept-button` → `.acceptButton`
+
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here’s how to update your `RoomSelector.tsx` to use camelCase class names, assuming you also update your CSS file accordingly.
+
+````tsx
+// ...existing code...
+import styles from "./RoomSelector.module.css"; // Use CSS module
+
+// ...existing code...
+
+return (
+  <div className={styles.roomSelectorOverlay}>
+    <div className={styles.roomSelectorContainer}>
+      <div className={styles.roomSelectorHeader}>
+        <div className={styles.appTitle}>
+          <h1>Seraphine Hybrid V1</h1>
+          <div className={styles.selectedRoomsIndicator}>
+            {roomList
+              .filter((room) => room.id === activeRoomId)
+              .map((room) => (
+                <span key={room.id} className={styles.selectedRoomTag}>
+                  {room.name}
+                </span>
+              ))}
+          </div>
+        </div>
+        <button
+          className={styles.roomSelectorClose}
+          onClick={onClose}
+          title="Close"
+          aria-label="Close"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M18 6L6 18M6 6L18 18"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div className={styles.roomSelectorContent}>
+        <h2 className={styles.sectionTitle}>Pilih Ruangan</h2>
+
+        <div className={styles.roomsGrid}>
+          {roomList.map((room) => (
+            <div
+              key={room.id}
+              className={`${styles.roomCard} ${activeRoomId === room.id ? styles.selected : ""}`}
+              onClick={() => handleRoomSelect(room.id)}
+            >
+              <div className={styles.roomCardInner}>
+                <div className={styles.roomIcon}>{getRoomIcon(room.name)}</div>
+                <div className={styles.roomInfo}>
+                  <h3 className={styles.roomName}>{room.name}</h3>
+                  <p className={styles.roomDeviceCount}>
+                    {room.deviceCount}{" "}
+                    {room.deviceCount === 1 ? "device" : "devices"}
+                  </p>
+                </div>
+                <div className={styles.roomStatusIndicator}>
+                  <div className={styles.statusDot}></div>
+                </div>
+              </div>
+              {activeRoomId === room.id && (
+                <div className={styles.selectionGlow}></div>
+              )}
+            </div>
+          ))}
+
+          <div className={styles.addRoomCard} onClick={handleAddNewRoom}>
+            <div className={styles.addRoomInner}>
+              <div className={styles.addRoomIcon}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 5v14M5 12h14"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+              <div className={styles.addRoomText}>
+                <h3>Tambah Ruangan Baru</h3>
+                <p>Buat ruangan baru</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {activeRoomId && (
+          <div className={styles.selectedRoomPanel}>
+            <div className={styles.panelHeader}>
+              <h3>
+                {roomList.find((r) => r.id === activeRoomId)?.name} - Device
+                Management
+              </h3>
+              <button className={styles.manageDevicesBtn}>
+                Manage Devices
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M9 18l6-6-6-6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div className={styles.panelContent}>
+              <p>
+                {roomList.find((r) => r.id === activeRoomId)?.deviceCount}{" "}
+                devices connected
+              </p>
+              <div className={styles.quickActions}>
+                <button className={styles.quickActionBtn}>Add Device</button>
+                <button className={styles.quickActionBtn}>Room Settings</button>
+                <button className={styles.quickActionBtn}>Automation</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+);
+// ...existing code...
+````
+
+**Update your CSS module file as well:**  
+- `.room-selector-overlay` → `.roomSelectorOverlay`
+- `.room-selector-container` → `.roomSelectorContainer`
+- `.room-selector-header` → `.roomSelectorHeader`
+- `.app-title` → `.appTitle`
+- `.selected-rooms-indicator` → `.selectedRoomsIndicator`
+- `.selected-room-tag` → `.selectedRoomTag`
+- `.room-selector-close` → `.roomSelectorClose`
+- `.room-selector-content` → `.roomSelectorContent`
+- `.section-title` → `.sectionTitle`
+- `.rooms-grid` → `.roomsGrid`
+- `.room-card` → `.roomCard`
+- `.selected` → `.selected`
+- `.room-card-inner` → `.roomCardInner`
+- `.room-icon` → `.roomIcon`
+- `.room-info` → `.roomInfo`
+- `.room-name` → `.roomName`
+- `.room-device-count` → `.roomDeviceCount`
+- `.room-status-indicator` → `.roomStatusIndicator`
+- `.status-dot` → `.statusDot`
+- `.selection-glow` → `.selectionGlow`
+- `.add-room-card` → `.addRoomCard`
+- `.add-room-inner` → `.addRoomInner`
+- `.add-room-icon` → `.addRoomIcon`
+- `.add-room-text` → `.addRoomText`
+- `.selected-room-panel` → `.selectedRoomPanel`
+- `.panel-header` → `.panelHeader`
+- `.manage-devices-btn` → `.manageDevicesBtn`
+- `.panel-content` → `.panelContent`
+- `.quick-actions` → `.quickActions`
+- `.quick-action-btn` → `.quickActionBtn`
+
+**Be sure to update both your TSX and CSS module files for consistency!**
+
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `ParticleEffects.tsx` updated to use camelCase class names, matching the camelCase conversion in your CSS module:
+
+````tsx
+'use client';
+
+import React, { useEffect, useRef } from 'react';
+import styles from '../styles/ParticleEffects.module.css';
+
+export default function ParticleEffects() {
+  const particlesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = particlesRef.current;
+    if (!container) return;
+
+    const createParticle = (intensity: boolean = false) => {
+      const particle = document.createElement('div');
+      particle.className = styles.particle;
+      
+      if (intensity) {
+        particle.classList.add(styles.highIntensity);
+      }
+
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      particle.style.setProperty('--x', x.toString());
+      particle.style.setProperty('--y', y.toString());
+
+      container.appendChild(particle);
+
+      setTimeout(() => {
+        particle.classList.add(styles.fadeOut);
+        setTimeout(() => {
+          particle.remove();
+        }, 1000);
+      }, Math.random() * 5000 + 2000);
+    };
+
+    const interval = setInterval(() => {
+      createParticle(Math.random() > 0.8);
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <div ref={particlesRef} className={styles.particles} />
+  );
+}
+````
+
+**What changed:**  
+- `styles['high-intensity']` → `styles.highIntensity`
+
+Make sure your CSS module uses camelCase class names as well.  
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Your `PageTransition.tsx` does not use any CSS class names, so there are no dash-case class names to convert to camelCase in this file.
+
+**No changes are needed for this file.**
+
+If you have other `.tsx` files that use CSS modules with dash-case class names, please share them and I’ll convert them for you!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `OnboardingStep3.tsx` updated to use camelCase class names, matching the camelCase convention in your CSS modules:
+
+````tsx
+"use client";
+
+import React from 'react';
+import styles from '../styles/splash.module.css';
+
+interface OnboardingStep3Props {
+  onNext: () => void;
+  onBack: () => void;
+}
+
+export default function OnboardingStep3({ onNext, onBack }: OnboardingStep3Props) {
+  return (
+    <div className={styles.onboardingContainer}>
+      <div className={styles.onboardingContent}>
+        <h2 className={styles.onboardingTitle}>Final Setup</h2>
+        <p className={styles.onboardingText}>
+          Step 3: Complete your setup
+        </p>
+        <div className={styles.onboardingProgress}>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>1</span>
+          </div>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>2</span>
+          </div>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>3</span>
+          </div>
+        </div>
+        <div className={styles.onboardingButtons}>
+          <button className={styles.backButton} onClick={onBack}>
+            Back
+          </button>
+          <button className={styles.nextButton} onClick={onNext}>
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+````
+
+**What was changed:**  
+- All class names are now camelCase (e.g., `onboardingContainer`, `onboardingContent`, `onboardingTitle`, etc.).
+
+**Reminder:**  
+Make sure your CSS module file (`splash.module.css` or the relevant one) uses the same camelCase class names.
+
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `OnboardingStep2.tsx` updated to use camelCase class names, matching the camelCase convention in your CSS modules:
+
+````tsx
+"use client";
+
+import React from 'react';
+import styles from '../styles/splash.module.css';
+
+interface OnboardingStep2Props {
+  onNext: () => void;
+  onBack: () => void;
+  onSkip: () => void;
+}
+
+export default function OnboardingStep2({ onNext, onBack, onSkip }: OnboardingStep2Props) {
+  return (
+    <div className={styles.onboardingContainer}>
+      <div className={styles.onboardingContent}>
+        <h2 className={styles.onboardingTitle}>Getting Started</h2>
+        <p className={styles.onboardingText}>
+          Step 2: Customize your settings
+        </p>
+        <div className={styles.onboardingProgress}>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>1</span>
+          </div>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>2</span>
+          </div>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>3</span>
+          </div>
+        </div>
+        <div className={styles.onboardingButtons}>
+          <button className={styles.backButton} onClick={onBack}>
+            Back
+          </button>
+          <button className={styles.nextButton} onClick={onNext}>
+            Next
+          </button>
+          <button className={styles.skipButton} onClick={onSkip}>
+            Skip
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+````
+
+**What was changed:**  
+- All class names are now camelCase (e.g., `onboardingContainer`, `onboardingContent`, `onboardingTitle`, `onboardingText`, `onboardingProgress`, `progressStep`, `progressNumber`, `onboardingButtons`, `backButton`, `nextButton`, `skipButton`).
+
+**Reminder:**  
+Make sure your CSS module file (`splash.module.css` or the relevant one) uses the same camelCase class names.
+
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `OnboardingStep1.tsx` updated to use camelCase class names, matching the camelCase convention in your CSS modules:
+
+````tsx
+"use client";
+
+import React from 'react';
+import styles from '../styles/splash.module.css';
+
+interface OnboardingStep1Props {
+  onNext: () => void;
+  onSkip: () => void;
+}
+
+export default function OnboardingStep1({ onNext, onSkip }: OnboardingStep1Props) {
+  return (
+    <div className={styles.onboardingContainer}>
+      <div className={styles.onboardingContent}>
+        <h2 className={styles.onboardingTitle}>Welcome to Seraphine</h2>
+        <p className={styles.onboardingText}>
+          Step 1: Set up your profile
+        </p>
+        <div className={styles.onboardingProgress}>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>1</span>
+          </div>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>2</span>
+          </div>
+          <div className={styles.progressStep}>
+            <span className={styles.progressNumber}>3</span>
+          </div>
+        </div>
+        <button className={styles.nextButton} onClick={onNext}>
+          Next
+        </button>
+        <button className={styles.skipButton} onClick={onSkip}>
+          Skip
+        </button>
+      </div>
+    </div>
+  );
+}
+````
+
+**What was changed:**  
+- All class names are now camelCase (e.g., `onboardingContainer`, `onboardingContent`, `onboardingTitle`, `onboardingText`, `onboardingProgress`, `progressStep`, `progressNumber`, `nextButton`, `skipButton`).
+
+**Reminder:**  
+Make sure your CSS module file (`splash.module.css` or the relevant one) uses the same camelCase class names.
+
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here is your `LoginScreen.tsx` updated to use camelCase class names, matching the camelCase convention in your CSS module:
+
+````tsx
+'use client';
+
+import { useState } from 'react';
+import { loginUser } from '@/utils/auth';
+import styles from '@/styles/login.module.css';
+
+interface LoginScreenProps {
+  onLoginSuccess: () => void;
+}
+
+export default function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = () => {
+    const success = loginUser(username, password);
+    if (success) {
+      setError('');
+      onLoginSuccess();
+    } else {
+      setError('❌ Invalid username or password');
+    }
+  };
+
+  return (
+    <div className={styles.loginContainer}>
+      <div className={styles.loginContent}>
+        <h2 className={styles.loginTitle}>Welcome to Seraphine</h2>
+
+        <div className={styles.loginForm}>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Username</label>
+            <input
+              className={styles.formInput}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter username"
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Password</label>
+            <input
+              className={styles.formInput}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter password"
+            />
+          </div>
+
+          <button className={styles.loginButton} onClick={handleLogin}>
+            Log In
+          </button>
+
+          {error && <p className={styles.error}>{error}</p>}
+        </div>
+      </div>
+    </div>
+  );
+}
+````
+
+**What was changed:**  
+- All class names are now camelCase (e.g., `loginContainer`, `loginContent`, `loginTitle`, `loginForm`, `formGroup`, `formLabel`, `formInput`, `loginButton`, `error`).
+
+**Reminder:**  
+Make sure your `login.module.css` file uses the same camelCase class names.
+
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here’s how you would update your `LoadingComponents.tsx` to use camelCase class names, assuming you also update your CSS file to match.
+
+**Example conversion:**  
+- `.cyberpunk-spinner-container` → `.cyberpunkSpinnerContainer`
+- `.cyberpunk-spinner` → `.cyberpunkSpinner`
+- `.spinner-ring` → `.spinnerRing`
+- `.ring-1` → `.ring1`
+- `.spinner-core` → `.spinnerCore`
+- `.spinner-text` → `.spinnerText`
+- `.matrix-loader` → `.matrixLoader`
+- `.matrix-rain` → `.matrixRain`
+- `.matrix-column` → `.matrixColumn`
+- `.matrix-char` → `.matrixChar`
+- `.matrix-text` → `.matrixText`
+- `.matrix-loading-text` → `.matrixLoadingText`
+- `.matrix-cursor` → `.matrixCursor`
+- `.cyberpunk-progress-container` → `.cyberpunkProgressContainer`
+- `.progress-label` → `.progressLabel`
+- `.cyberpunk-progress` → `.cyberpunkProgress`
+- `.progress-track` → `.progressTrack`
+- `.progress-fill` → `.progressFill`
+- `.progress-glow` → `.progressGlow`
+- `.progress-indicators` → `.progressIndicators`
+- `.progress-dot` → `.progressDot`
+- `.progress-percentage` → `.progressPercentage`
+- `.neural-network-loader` → `.neuralNetworkLoader`
+- `.neural-nodes` → `.neuralNodes`
+- `.neural-node` → `.neuralNode`
+- `.neural-connections` → `.neuralConnections`
+- `.neural-connection` → `.neuralConnection`
+- `.neural-core` → `.neuralCore`
+- `.holographic-loader` → `.holographicLoader`
+- `.holographic-grid` → `.holographicGrid`
+- `.grid-cell` → `.gridCell`
+- `.holographic-text` → `.holographicText`
+- `.holographic-char` → `.holographicChar`
+- `.holographic-content` → `.holographicContent`
+- `.holographic-cursor` → `.holographicCursor`
+- `.data-transfer` → `.dataTransfer`
+- `.transfer-endpoints` → `.transferEndpoints`
+- `.endpoint` → `.endpoint`
+- `.source` → `.source`
+- `.destination` → `.destination`
+- `.endpoint-icon` → `.endpointIcon`
+- `.endpoint-label` → `.endpointLabel`
+- `.transfer-line` → `.transferLine`
+- `.data-packet` → `.dataPacket`
+- `.packet-core` → `.packetCore`
+- `.packet-trail` → `.packetTrail`
+- `.transfer-status` → `.transferStatus`
+- `.status-text` → `.statusText`
+- `.status-dots` → `.statusDots`
+- `.system-boot-loader` → `.systemBootLoader`
+- `.boot-header` → `.bootHeader`
+- `.boot-logo` → `.bootLogo`
+- `.logo-bracket` → `.logoBracket`
+- `.logo-text` → `.logoText`
+- `.boot-version` → `.bootVersion`
+- `.boot-sequence` → `.bootSequence`
+- `.boot-line` → `.bootLine`
+- `.boot-prompt` → `.bootPrompt`
+- `.boot-text` → `.bootText`
+- `.boot-cursor` → `.bootCursor`
+- `.boot-progress` → `.bootProgress`
+- `.boot-bar` → `.bootBar`
+
+---
+
+### Example for one component:
+
+**Before:**
+```tsx
+<div className={`cyberpunk-spinner-container ${size}`}>
+  <div className={`cyberpunk-spinner ${color}`}>
+    <div className="spinner-ring ring-1"></div>
+    <div className="spinner-ring ring-2"></div>
+    <div className="spinner-ring ring-3"></div>
+    <div className="spinner-core"></div>
+  </div>
+  {text && <span className="spinner-text">{text}</span>}
+</div>
+```
+
+**After:**
+```tsx
+<div className={`${styles.cyberpunkSpinnerContainer} ${styles[size]}`}>
+  <div className={`${styles.cyberpunkSpinner} ${styles[color]}`}>
+    <div className={styles.spinnerRing + ' ' + styles.ring1}></div>
+    <div className={styles.spinnerRing + ' ' + styles.ring2}></div>
+    <div className={styles.spinnerRing + ' ' + styles.ring3}></div>
+    <div className={styles.spinnerCore}></div>
+  </div>
+  {text && <span className={styles.spinnerText}>{text}</span>}
+</div>
+```
+
+---
+
+**You must:**
+- Update all class names in your CSS file to camelCase.
+- Import your CSS as a module:  
+  `import styles from './LoadingComponents.module.css';`
+- Use `styles.className` in your TSX file, not string literals.
+
+---
+
+**If you want, paste your CSS file here and I’ll convert it for you!**  
+Let me know if you want a full conversion for all components in this file.
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Your `layout.tsx` does not use any CSS module class names, so there are no dash-case class names to convert to camelCase in this file.
+
+**No changes are needed for this file.**
+
+If you have other `.tsx` files that use CSS modules with dash-case class names, please share them and I’ll convert them for you!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here’s how you would update the relevant part of your `HeroModeAlert.tsx` to use camelCase class names, assuming you also update your CSS file accordingly.
+
+**Before:**
+```tsx
+<div
+  className={`threat-level-fill critical width-${threatLevel}`}
+></div>
+```
+
+**After:**
+```tsx
+<div
+  className={`threatLevelFill critical width${threatLevel}`}
+></div>
+```
+
+**What to do in your CSS file:**
+- Change `.threat-level-fill` to `.threatLevelFill`
+- Change `.width-85` to `.width85` (and so on for all width classes)
+
+**General rule:**  
+- In your TSX, use `className="threatLevelFill"` (or with template literals as above).
+- In your CSS, use `.threatLevelFill { ... }` and `.width85 { ... }` etc.
+
+**Repeat this for all dash-case class names in your CSS modules and their usages in your TSX files.**
+
+Let me know if you want the full file converted or need help with the CSS!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here’s how you would update the relevant part of your `DeviceCards.tsx` to use camelCase class names, assuming you also update your CSS file to match and import it as a module.
+
+**1. Change the import:**
+```tsx
+import styles from './DeviceCards.module.css';
+```
+
+**2. Update all className usages to camelCase and use the `styles` object:**
+
+````tsx
+// ...existing code...
+<div className={styles.deviceInfo}>
+  <h3 className={styles.deviceName}>{device.name}</h3>
+  <div className={styles.deviceDetails}>
+    <span className={styles.deviceBrand}>{device.brand}</span>
+    {device.model && (
+      <>
+        <span className={styles.detailSeparator}>•</span>
+        <span className={styles.deviceModel}>{device.model}</span>
+      </>
+    )}
+  </div>
+</div>
+
+<div className={styles.deviceControls}>
+  <div className={styles.deviceStatusRow}>
+    <div className={styles.connectionStatus}>
+      <div
+        className={`${styles.connectionDot} ${styles[device.connectionStatus.toLowerCase()]}`}
+      />
+      <span className={styles.connectionText}>
+        {device.connectionStatus}
+      </span>
+    </div>
+    {renderWifiStrength(device.wifiStrength)}
+  </div>
+
+  <div className={styles.toggleSwitchContainer}>
+    <span className={`${styles.statusLabel} ${isOn ? styles.on : styles.off}`}>
+      {currentStatus}
+    </span>
+    <button
+      className={`${styles.toggleSwitch} ${isOn ? styles.on : styles.off}`}
+      onClick={() => handleDeviceToggle(device)}
+      title={`Turn ${isOn ? "off" : "on"} ${device.name}`}
+      aria-label={`Turn ${isOn ? "off" : "on"} ${device.name}`}
+    >
+      <div className={styles.toggleSlider}>
+        <div className={styles.toggleThumb} />
+      </div>
+    </button>
+  </div>
+</div>
+
+{isOn && <div className={styles.deviceGlow} />}
+// ...existing code...
+````
+
+**3. Update all other class names in the file similarly. For example:**
+- `device-cards-container` → `deviceCardsContainer`
+- `device-cards-header` → `deviceCardsHeader`
+- `breadcrumb` → `breadcrumb`
+- `back-button` → `backButton`
+- `breadcrumb-text` → `breadcrumbText`
+- `breadcrumb-separator` → `breadcrumbSeparator`
+- `current-room` → `currentRoom`
+- `room-title` → `roomTitle`
+- `device-count` → `deviceCount`
+- `devices-grid` → `devicesGrid`
+- `device-card` → `deviceCard`
+- `active` → `active`
+- `inactive` → `inactive`
+- `device-card-header` → `deviceCardHeader`
+- `device-icon` → `deviceIcon`
+- `device-settings` → `deviceSettings`
+- `wifi-bar` → `wifiBar`
+- `wifi-strength-indicator` → `wifiStrengthIndicator`
+- etc.
+
+**4. Update your CSS file to use camelCase class names as well.**
+
+---
+
+**Summary:**  
+- Import your CSS as a module.
+- Use `styles.className` for all class names.
+- Convert all dash-case class names to camelCase in both your TSX and CSS files.
+
+Let me know if you want the full file or CSS converted!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Your `Dashboard.tsx` only uses Tailwind utility classes (which should remain dash-case) and does **not** use any CSS module class names.  
+**No changes are needed for this file.**
+
+**Summary:**  
+- Tailwind and global classes: keep dash-case (e.g., `flex-col`, `bg-white`, `text-xl`).
+- Only change dash-case to camelCase for CSS module classes (e.g., `styles.myClassName`).
+
+If you add or use CSS modules in this file in the future, use camelCase for those class names and access them via the imported `styles` object.
+
+Let me know if you want to convert another file!
+
+---
+
+_**User**_
+
+Please help, i want you to change the dash-case class names to camelCase in all .module.css and .tsx files
+
+---
+
+_**Assistant**_
+
+Here’s how to update your `AddDeviceModal.tsx` to use camelCase class names, assuming you also update your CSS file to match and import it as a module.
+
+**1. Change the import:**
+```tsx
+import styles from './AddDeviceModal.module.css';
+```
+
+**2. Update all className usages to camelCase and use the `styles` object:**
+
+````tsx
+// ...existing code...
+return (
+  <div className={styles.modalOverlay} onClick={handleOverlayClick}>
+    <div className={styles.modalContainer}>
+      <div className={styles.modalHeader}>
+        <h2 className={styles.modalTitle}>Tambah Perangkat Baru</h2>
+        <button
+          className={styles.closeBtn}
+          onClick={onClose}
+          title="Tutup"
+          aria-label="Tutup"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M18 6L6 18M6 6L18 18"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit} className={styles.modalForm}>
+        <div className={styles.formGroup}>
+          <label htmlFor="deviceName" className={styles.formLabel}>
+            Nama Perangkat
+          </label>
+          <input
+            type="text"
+            id="deviceName"
+            value={deviceName}
+            onChange={(e) => setDeviceName(e.target.value)}
+            className={`${styles.formInput} ${errors.deviceName ? styles.error : ""}`}
+            placeholder="AC Ruang Tamu"
+          />
+          {errors.deviceName && (
+            <span className={styles.errorMessage}>{errors.deviceName}</span>
+          )}
+        </div>
+
+        {/* Repeat for all other fields, e.g.: */}
+        <div className={styles.formGroup}>
+          <label htmlFor="deviceType" className={styles.formLabel}>
+            Jenis Perangkat
+          </label>
+          <select
+            id="deviceType"
+            value={deviceType}
+            onChange={(e) => setDeviceType(e.target.value)}
+            className={`${styles.formSelect} ${errors.deviceType ? styles.error : ""}`}
+          >
+            <option value="">Pilih jenis perangkat</option>
+            {deviceTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+          {errors.deviceType && (
+            <span className={styles.errorMessage}>{errors.deviceType}</span>
+          )}
+        </div>
+        {/* ...repeat for deviceBrand, pairingStatus, selectedRoom... */}
+
+        <div className={styles.formActions}>
+          <button type="button" onClick={onClose} className={styles.cancelBtn}>
+            Batal
+          </button>
+          <button type="submit" className={styles.submitBtn}>
+            Tambah Perangkat
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+);
+// ...existing code...
+````
+
+**3. Update your CSS file to use camelCase class names as well:**
+- `.modal-overlay` → `.modalOverlay`
+- `.modal-container` → `.modalContainer`
+- `.modal-header` → `.modalHeader`
+- `.modal-title` → `.modalTitle`
+- `.close-btn` → `.closeBtn`
+- `.modal-form` → `.modalForm`
+- `.form-group` → `.formGroup`
+- `.form-label` → `.formLabel`
+- `.form-input` → `.formInput`
+- `.form-select` → `.formSelect`
+- `.error-message` → `.errorMessage`
+- `.form-actions` → `.formActions`
+- `.cancel-btn` → `.cancelBtn`
+- `.submit-btn` → `.submitBtn`
+- `.error` → `.error`
+
+**Summary:**  
+- Import your CSS as a module.
+- Use `styles.className` for all class names.
+- Convert all dash-case class names to camelCase in both your TSX and CSS files.
+
+Let me know if you want the full file or CSS converted!
+
+---
+
+_**User**_
+
+how to install the tailwind?
+
+---
+
+_**Assistant**_
+
+To install Tailwind CSS in your project, follow these steps:
+
+1. **Install Tailwind and dependencies:**
+```sh
+npm install -D tailwindcss postcss autoprefixer
+```
+
+2. **Initialize Tailwind config:**
+```sh
+npx tailwindcss init -p
+```
+
+3. **Configure your `tailwind.config.js`**  
+Add your template paths:
+```js
+// tailwind.config.js
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    // Add other paths as needed
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+4. **Add Tailwind to your CSS:**  
+At the top of your main CSS file (e.g., `globals.css`):
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+5. **Restart your dev server:**  
+```sh
+npm run dev
+```
+
+Now you can use Tailwind utility classes in your project!  
+See the [official Tailwind docs](https://tailwindcss.com/docs/installation) for more details.
+
+---
+

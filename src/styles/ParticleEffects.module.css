@@ -21,7 +21,7 @@
   animation: drift linear infinite;
 }
 
-.particle.high-intensity {
+.particle.highIntensity {
   width: 3px;
   height: 3px;
   background-color: #ff00cc;

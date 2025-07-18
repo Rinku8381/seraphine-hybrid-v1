@@ -1,4 +1,4 @@
-.onboarding-step1 {
+.onboardingStep1 {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
   display: flex;
@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-.onboarding-step1::before {
+.onboardingStep1::before {
   content: "";
   position: absolute;
   top: 0;
@@ -30,7 +30,7 @@
   pointer-events: none;
 }
 
-.onboarding-container {
+.onboardingContainer {
   max-width: 400px;
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
@@ -48,7 +48,7 @@
 }
 
 /* Progress Section */
-.progress-section {
+.progressSection {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -56,12 +56,12 @@
   margin-bottom: 40px;
 }
 
-.progress-dots {
+.progressDots {
   display: flex;
   gap: 12px;
 }
 
-.progress-dot {
+.progressDot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -69,30 +69,30 @@
   transition: all 0.3s ease;
 }
 
-.progress-dot.active {
+.progressDot.active {
   background: linear-gradient(135deg, #00d4ff, #ff006e);
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
 }
 
-.progress-text {
+.progressText {
   color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   font-weight: 500;
 }
 
 /* Avatar Section */
-.avatar-section {
+.avatarSection {
   margin-bottom: 40px;
 }
 
-.avatar-container {
+.avatarContainer {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.avatar-glow {
+.avatarGlow {
   position: absolute;
   width: 140px;
   height: 140px;
@@ -103,7 +103,7 @@
   filter: blur(10px);
 }
 
-.avatar-circle {
+.avatarCircle {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -121,7 +121,7 @@
   animation: avatarRotate 20s linear infinite;
 }
 
-.avatar-image {
+.avatarImage {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -157,11 +157,11 @@
 }
 
 /* Content Section */
-.content-section {
+.contentSection {
   margin-bottom: 40px;
 }
 
-.welcome-title {
+.welcomeTitle {
   font-size: 28px;
   font-weight: 700;
   color: white;
@@ -173,7 +173,7 @@
   background-clip: text;
 }
 
-.welcome-subtitle {
+.welcomeSubtitle {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
@@ -181,11 +181,11 @@
 }
 
 /* Button Section */
-.button-section {
+.buttonSection {
   width: 100%;
 }
 
-.setup-button {
+.setupButton {
   width: 100%;
   background: linear-gradient(135deg, #00d4ff, #ff006e);
   border: none;
@@ -203,7 +203,7 @@
   overflow: hidden;
 }
 
-.setup-button::before {
+.setupButton::before {
   content: "";
   position: absolute;
   top: 0;
@@ -219,62 +219,62 @@
   transition: left 0.5s;
 }
 
-.setup-button:hover::before {
+.setupButton:hover::before {
   left: 100%;
 }
 
-.setup-button:hover {
+.setupButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
 }
 
-.setup-button:active {
+.setupButton:active {
   transform: translateY(0);
 }
 
-.button-text {
+.buttonText {
   flex: 1;
   text-align: center;
 }
 
-.button-arrow {
+.buttonArrow {
   font-size: 20px;
   transition: transform 0.3s ease;
 }
 
-.setup-button:hover .button-arrow {
+.setupButton:hover .buttonArrow {
   transform: translateX(4px);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .onboarding-step1 {
+  .onboardingStep1 {
     padding: 15px;
   }
 
-  .onboarding-container {
+  .onboardingContainer {
     padding: 30px 20px;
   }
 
-  .welcome-title {
+  .welcomeTitle {
     font-size: 24px;
   }
 
-  .welcome-subtitle {
+  .welcomeSubtitle {
     font-size: 14px;
   }
 
-  .avatar-circle {
+  .avatarCircle {
     width: 100px;
     height: 100px;
   }
 
-  .avatar-glow {
+  .avatarGlow {
     width: 120px;
     height: 120px;
   }
 
-  .avatar-image {
+  .avatarImage {
     width: 70px;
     height: 70px;
     font-size: 30px;
@@ -282,25 +282,25 @@
 }
 
 @media (max-width: 480px) {
-  .onboarding-container {
+  .onboardingContainer {
     padding: 25px 15px;
   }
 
-  .welcome-title {
+  .welcomeTitle {
     font-size: 22px;
   }
 
-  .avatar-circle {
+  .avatarCircle {
     width: 90px;
     height: 90px;
   }
 
-  .avatar-glow {
+  .avatarGlow {
     width: 110px;
     height: 110px;
   }
 
-  .avatar-image {
+  .avatarImage {
     width: 60px;
     height: 60px;
     font-size: 26px;

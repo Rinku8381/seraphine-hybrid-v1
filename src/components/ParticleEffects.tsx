@@ -15,7 +15,7 @@ export default function ParticleEffects() {
       particle.className = styles.particle;
       
       if (intensity) {
-        particle.classList.add(styles['high-intensity']);
+        particle.classList.add(styles.highIntensity);
       }
 
       const x = Math.random() * 200 - 100;

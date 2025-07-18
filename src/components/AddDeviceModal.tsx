@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import "./AddDeviceModal.css";
+import styles from "./AddDeviceModal.module.css";
 
 interface AddDeviceModalProps {
   onClose: () => void;
@@ -97,12 +97,12 @@ export default function AddDeviceModal({
   };
 
   return (
-    <div className="modal-overlay" onClick={handleOverlayClick}>
-      <div className="modal-container">
-        <div className="modal-header">
-          <h2 className="modal-title">Tambah Perangkat Baru</h2>
+    <div className={styles.modalOverlay} onClick={handleOverlayClick}>
+      <div className={styles.modalContainer}>
+        <div className={styles.modalHeader}>
+          <h2 className={styles.modalTitle}>Tambah Perangkat Baru</h2>
           <button
-            className="close-btn"
+            className={styles.closeBtn}
             onClick={onClose}
             title="Tutup"
             aria-label="Tutup"
@@ -118,9 +118,9 @@ export default function AddDeviceModal({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="modal-form">
-          <div className="form-group">
-            <label htmlFor="deviceName" className="form-label">
+        <form onSubmit={handleSubmit} className={styles.modalForm}>
+          <div className={styles.formGroup}>
+            <label htmlFor="deviceName" className={styles.formLabel}>
               Nama Perangkat
             </label>
             <input
@@ -128,23 +128,27 @@ export default function AddDeviceModal({
               id="deviceName"
               value={deviceName}
               onChange={(e) => setDeviceName(e.target.value)}
-              className={`form-input ${errors.deviceName ? "error" : ""}`}
+              className={`${styles.formInput} ${
+                errors.deviceName ? styles.error : ""
+              }`}
               placeholder="AC Ruang Tamu"
             />
             {errors.deviceName && (
-              <span className="error-message">{errors.deviceName}</span>
+              <span className={styles.errorMessage}>{errors.deviceName}</span>
             )}
           </div>
 
-          <div className="form-group">
-            <label htmlFor="deviceType" className="form-label">
+          <div className={styles.formGroup}>
+            <label htmlFor="deviceType" className={styles.formLabel}>
               Jenis Perangkat
             </label>
             <select
               id="deviceType"
               value={deviceType}
               onChange={(e) => setDeviceType(e.target.value)}
-              className={`form-select ${errors.deviceType ? "error" : ""}`}
+              className={`${styles.formSelect} ${
+                errors.deviceType ? styles.error : ""
+              }`}
             >
               <option value="">Pilih jenis perangkat</option>
               {deviceTypes.map((type) => (
@@ -154,12 +158,12 @@ export default function AddDeviceModal({
               ))}
             </select>
             {errors.deviceType && (
-              <span className="error-message">{errors.deviceType}</span>
+              <span className={styles.errorMessage}>{errors.deviceType}</span>
             )}
           </div>
 
-          <div className="form-group">
-            <label htmlFor="deviceBrand" className="form-label">
+          <div className={styles.formGroup}>
+            <label htmlFor="deviceBrand" className={styles.formLabel}>
               Merek
             </label>
             <input
@@ -167,23 +171,27 @@ export default function AddDeviceModal({
               id="deviceBrand"
               value={deviceBrand}
               onChange={(e) => setDeviceBrand(e.target.value)}
-              className={`form-input ${errors.deviceBrand ? "error" : ""}`}
+              className={`${styles.formInput} ${
+                errors.deviceBrand ? styles.error : ""
+              }`}
               placeholder="TCL AI Inverter"
             />
             {errors.deviceBrand && (
-              <span className="error-message">{errors.deviceBrand}</span>
+              <span className={styles.errorMessage}>{errors.deviceBrand}</span>
             )}
           </div>
 
-          <div className="form-group">
-            <label htmlFor="pairingStatus" className="form-label">
+          <div className={styles.formGroup}>
+            <label htmlFor="pairingStatus" className={styles.formLabel}>
               Status Pairing
             </label>
             <select
               id="pairingStatus"
               value={pairingStatus}
               onChange={(e) => setPairingStatus(e.target.value)}
-              className={`form-select ${errors.pairingStatus ? "error" : ""}`}
+              className={`${styles.formSelect} ${
+                errors.pairingStatus ? styles.error : ""
+              }`}
             >
               <option value="">Pilih status pairing</option>
               {pairingStatuses.map((status) => (
@@ -193,19 +201,21 @@ export default function AddDeviceModal({
               ))}
             </select>
             {errors.pairingStatus && (
-              <span className="error-message">{errors.pairingStatus}</span>
+              <span className={styles.errorMessage}>{errors.pairingStatus}</span>
             )}
           </div>
 
-          <div className="form-group">
-            <label htmlFor="selectedRoom" className="form-label">
+          <div className={styles.formGroup}>
+            <label htmlFor="selectedRoom" className={styles.formLabel}>
               Ruangan
             </label>
             <select
               id="selectedRoom"
               value={selectedRoom}
               onChange={(e) => setSelectedRoom(e.target.value)}
-              className={`form-select ${errors.selectedRoom ? "error" : ""}`}
+              className={`${styles.formSelect} ${
+                errors.selectedRoom ? styles.error : ""
+              }`}
             >
               <option value="">Pilih ruangan</option>
               {rooms.map((room) => (
@@ -215,15 +225,15 @@ export default function AddDeviceModal({
               ))}
             </select>
             {errors.selectedRoom && (
-              <span className="error-message">{errors.selectedRoom}</span>
+              <span className={styles.errorMessage}>{errors.selectedRoom}</span>
             )}
           </div>
 
-          <div className="form-actions">
-            <button type="button" onClick={onClose} className="cancel-btn">
+          <div className={styles.formActions}>
+            <button type="button" onClick={onClose} className={styles.cancelBtn}>
               Batal
             </button>
-            <button type="submit" className="submit-btn">
+            <button type="submit" className={styles.submitBtn}>
               Tambah Perangkat
             </button>
           </div>

@@ -241,7 +241,8 @@ export default function HeroModeAlert({
             <div className="threat-level-container">
               <div className="threat-level-bar">
                 <div
-                  className={`threat-level-fill critical width-${threatLevel}`}
+                  className={`threatLevelFill critical width${threatLevel}`}
+
                 ></div>
               </div>
               <div className="threat-level-info">
